@@ -24,11 +24,15 @@ public class Model {
     private int totalAristas;
     private Nodo nodoInicio;
     private ArrayList<Nodo> grafo;
+    private Datos datos;
+
     private int[] nodosPrevios;
     private int[] distMin;
 
+
     // CONSTRUCTORS
     public Model() {
+        datos = new Datos();
     }
 
     public Model(View vista, Controller controlador) {
@@ -85,6 +89,17 @@ public class Model {
     public void setGrafo(ArrayList<Nodo> al) {
         this.grafo = al;
     }
+    
+    public Datos getDatos(){
+        return datos;
+    }
+
+
+    public void actualizarNNodos() {
+        grafo = datos.getGrafo();
+        totalNodos = datos.getNNodos();
+    }
+    
 
     public int[] getNodosPrevios() {
         return nodosPrevios;

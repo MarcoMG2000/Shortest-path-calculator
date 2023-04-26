@@ -3,15 +3,22 @@
  *
  * @date 12/05/2023
  * @author jfher, JordiSM, peremarc, MarcoMG
- * @url 
+ * @url
  */
 package view;
 
 import model.Model;
 import controller.Controller;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -36,6 +43,8 @@ public class View extends JFrame {
     private RightLateralPanel rightPanel;
     private GraphPanel graphPanel;
 
+    
+
     // CONSTRUCTORS
     public View() {
     }
@@ -55,8 +64,8 @@ public class View extends JFrame {
         this.setLayout(null);
         this.setResizable(false);
 
-        this.GraphWidth = 800;
-        this.GraphHeight = 800;
+        this.GraphWidth = 400;
+        this.GraphHeight = 600;
 
         // DIMENSION DEL JFRAME
         setSize(this.GraphWidth + this.MARGENLAT * 2, this.GraphHeight + this.MARGENVER + 40);
@@ -67,7 +76,9 @@ public class View extends JFrame {
 
         // GRAPH PANEL
         graphPanel = new GraphPanel(this, GraphWidth, GraphHeight);
-        this.add(graphPanel);
+        JScrollPane scrollpane = new JScrollPane(graphPanel);
+        scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        getContentPane().add(scrollpane, BorderLayout.CENTER);
 
         // PANELES LATERALES
         leftPanel = new LeftLateralPanel(this);
