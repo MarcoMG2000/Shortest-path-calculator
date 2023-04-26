@@ -26,6 +26,7 @@ public class Controller {
     // PUNTEROS DEL PATRÓN MVC
     private Model modelo;
     private View vista;
+    private int[] nodosPrevios;
 
     // CONSTRUCTORS
     public Controller() {
@@ -90,6 +91,8 @@ public class Controller {
         // Para recuperar el camino más corto desde el origen hasta un nodo destino específico,
         // se puede seguir los nodos previos desde el destino hasta el origen.
         System.out.println(iteraciones);
+        modelo.setNodosPrevios(nodosPrevios);
+        modelo.setDistMin(distMin);
         return distMin;
     }
 
@@ -106,7 +109,9 @@ public class Controller {
         PriorityQueue<Par> colaP = new PriorityQueue<>(Comparator.comparingInt(p -> p.distancia));
 
         dijkstraRecAux(nodoInicio, 0, visitados, colaP, nodosPrevios, distMin, nDestino);
-
+        
+        modelo.setNodosPrevios(nodosPrevios);
+        modelo.setDistMin(distMin);
         return distMin;
     }
 
