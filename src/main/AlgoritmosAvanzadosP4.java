@@ -117,7 +117,7 @@ public class AlgoritmosAvanzadosP4 {
         //vista.setControlador(controlador);
 
         controlador.setModelo(modelo);
-        int[] camino = controlador.dijkstra();
+        int[] camino = controlador.dijkstraRec(n1.getnNodo(), n2);
         System.out.println(Arrays.toString(camino));
         //controlador.setVista(vista);
 
