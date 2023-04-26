@@ -13,10 +13,12 @@ import java.util.ArrayList;
 public class Nodo {
 
     private int nNodo;
+    private String nom;
     private ArrayList<Integer[]> adjacentes;
 
-    public Nodo(int n) {
+    public Nodo(int n, String nom) {
         nNodo = n;
+        this.nom = nom;
         adjacentes = new ArrayList<>();
     }
 
