@@ -26,6 +26,10 @@ public class Model {
     private ArrayList<Nodo> grafo;
     private Datos datos;
 
+    private int[] nodosPrevios;
+    private int[] distMin;
+
+
     // CONSTRUCTORS
     public Model() {
         datos = new Datos();
@@ -81,8 +85,8 @@ public class Model {
     public ArrayList<Nodo> getGrafo() {
         return grafo;
     }
-    
-    public void setGrafo(ArrayList<Nodo> al){
+
+    public void setGrafo(ArrayList<Nodo> al) {
         this.grafo = al;
     }
     
@@ -90,9 +94,27 @@ public class Model {
         return datos;
     }
 
+
     public void actualizarNNodos() {
         grafo = datos.getGrafo();
         totalNodos = datos.getNNodos();
     }
     
+
+    public int[] getNodosPrevios() {
+        return nodosPrevios;
+    }
+
+    public void setNodosPrevios(int[] nodosPrevios) {
+        this.nodosPrevios = nodosPrevios;
+    }
+
+    public int[] getDistMin() {
+        return distMin;
+    }
+
+    public void setDistMin(int[] distMin) {
+        this.distMin = distMin;
+    }
+
 }

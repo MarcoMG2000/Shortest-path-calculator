@@ -131,8 +131,9 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         vista.setControlador(controlador);
 
         controlador.setModelo(modelo);
-        int[] camino = controlador.dijkstra();
-        System.out.println(Arrays.toString(camino));
+        controlador.dijkstraRec(n1.getnNodo(), n5);
+        System.out.println(Arrays.toString(modelo.getDistMin()));
+        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
         //controlador.setVista(vista);
 
         vista.mostrar();
