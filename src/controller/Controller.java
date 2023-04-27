@@ -72,9 +72,6 @@ public class Controller {
             }
             visitados.add(nodoActual);
             int distActual = parActual.distancia;
-            if (nodoActual == nDestino.getnNodo()) {
-                break; // Finalizar si se ha llegado al nodo destino
-            }
             /*Verificamos todos los nodos adyacentes del nodo escogido y tambien
             si la distancia previa es mayor que la actual o no.*/
             for (Integer[] arista : modelo.getGrafo().get(nodoActual).getAdjacentes()) {
@@ -132,9 +129,6 @@ public class Controller {
         }
         if (!colaP.isEmpty()) {
             Par parActual = colaP.poll();
-            if (parActual.nodo == nDestino.getnNodo()) {
-                return true; // Finalizar si se llega al nodo destino
-            }
             return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino);
         }
         return false;
