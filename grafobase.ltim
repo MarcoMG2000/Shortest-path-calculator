@@ -1,51 +1,70 @@
 <grafo>
 	<tipo>nodirigido</tipo>
-	<nodo>
-		1:santa maria:0:0
-	</nodo>
-	<nodo>
-		2:bunyola:2:0
-	</nodo>
-	<nodo>
-		3:palma:1:1
-	</nodo>
-	<nodo>
-		4:buger:3:1
-	</nodo>
-	<nodo>
-		5:petra:4:1
-	</nodo>
-	<nodo>
-		6:inca:5:1
-	</nodo>
-	<nodo>
-		7:banyalbufar:3:3
-	</nodo>
-	<arista>
-		1:2:12
-	</arista>
-	<arista>
-		2:3:22
-	</arista>
-	<arista>
-		2:3:32
-	</arista>
-	<arista>
-		2:4:18
-	</arista>
-	<arista>
-		4:3:120
-	</arista>
-	<arista>
-		4:5:28
-	</arista>
-	<arista>
-		6:5:8
-	</arista>
-	<arista>
-		6:7:35
-	</arista>
-	<arista>
-		3:7:45
-	</arista>
+	<nodo>1:Puerto de San Miguel:186:2</nodo>
+<nodo>2:San Miguel de Balansat:179:46</nodo>
+<nodo>3:Santa Gertrudis de Fruitera:171:127</nodo>
+<nodo>4:Puig den Valls:172:231</nodo>
+<nodo>5:Ibiza:164:259</nodo>
+<nodo>6:San Jorge de ses Salines:136:284</nodo>
+<nodo>7:San Francesc de s'Estany:128:321</nodo>
+<nodo>8:San Mateo de Albarca:114:67</nodo>
+<nodo>9:Santa Agnès de Corona:65:70</nodo>
+<nodo>10:San Antonio Abad:36:149</nodo>
+<nodo>11:Sant Rafel de Sa creu:138:183</nodo>
+<nodo>12:San Jose:20:239</nodo>
+<nodo>13:La Savina:162:517</nodo>
+<nodo>14:Es Pujols:208:533</nodo>
+<nodo>15:San Francisco Javier:174:550</nodo>
+<nodo>16:Es Caló:273:595</nodo>
+<nodo>17:San Juan Bautista:259:8</nodo>
+<nodo>18:Sant Llorenç de Balafia:238:76</nodo>
+<nodo>19:Santa Eulalia del Rio:290:144</nodo>
+<nodo>20:Cala San Vicente:355:19</nodo>
+<nodo>21:San Carlos:324:69</nodo>
+
+<arista>1:2:3</arista>
+<arista>1:17:8</arista>
+<arista>2:17:6</arista>
+<arista>2:8:5</arista>
+<arista>2:3:6</arista>
+<arista>2:1:3</arista>
+<arista>3:8:7</arista>
+<arista>3:18:5</arista>
+<arista>3:11:7</arista>
+<arista>3:19:14</arista>
+<arista>3:5:11</arista>
+<arista>17:20:7</arista>
+<arista>17:18:5</arista>
+<arista>17:2:7</arista>
+<arista>17:1:9</arista>
+<arista>8:9:3</arista>
+<arista>8:2:5</arista>
+<arista>8:3:7</arista>
+<arista>8:10:11</arista>
+<arista>18:3:6</arista>
+<arista>18:17:5</arista>
+<arista>18:21:8</arista>
+<arista>18:19:13</arista>
+<arista>18:11:14</arista>
+<arista>18:5:15</arista>
+<arista>11:5:7</arista>
+<arista>11:10:8</arista>
+<arista>11:9:10</arista>
+<arista>11:8:9</arista>
+<arista>11:3:7</arista>
+<arista>11:18:14</arista>
+<arista>11:19:12</arista>
+<arista>5:11:7</arista>
+<arista>5:12:12</arista>
+<arista>5:13:21</arista>
+<arista>5:19:13</arista>
+<arista>5:18:16</arista>
+<arista>5:3:10</arista>
+<arista>13:15:3</arista>
+<arista>13:14:4</arista>
+<arista>15:14:3</arista>
+<arista>15:13:3</arista>
+<arista>15:16:8</arista>
+<arista>16:15:8</arista>
+
 </grafo>

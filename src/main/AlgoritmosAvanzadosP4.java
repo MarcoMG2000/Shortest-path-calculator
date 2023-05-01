@@ -40,6 +40,7 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         /*
         Todo esto lo he necesitado para poder hacer una prueba de funcionamiento
          */
+        /*
         Nodo n1 = new Nodo(1,"");
         Nodo n2 = new Nodo(2,"");
         Nodo n3 = new Nodo(3,"");
@@ -111,17 +112,17 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         modelo.setTotalNodos(5);
         modelo.setTotalAristas(7);
         modelo.setNodoInicio(n1);
-
+        */
         //////////
         // Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
         MeuSax sax = new MeuSax("grafobase.ltim", this);
         sax.llegir();
-        //modelo.actualizarNNodos();
+        modelo.actualizarNNodos();
         //modelo.setNodoInicio(modelo.getGrafo().get(0));
         //System.out.println("nodes llegits = " + modelo.getTotalNodos());
         //////////
         
-        //vista = new View();
+        vista = new View();
         controlador = new Controller();
 
         //modelo.setVista(vista);
@@ -131,12 +132,14 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         //vista.setControlador(controlador);
 
         controlador.setModelo(modelo);
-        controlador.dijkstra(n1.getnNodo(), n5);
-        System.out.println(Arrays.toString(modelo.getDistMin()));
-        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
+        
+        System.out.println(Arrays.toString(controlador.dijkstraRec(1, modelo.getGrafo().get(4))));
+      //  controlador.dijkstra(n1.getnNodo(), n5);
+//        System.out.println(Arrays.toString(modelo.getDistMin()));
+//        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
         //controlador.setVista(vista);
 
-        //vista.mostrar();
+        vista.mostrar();
     }
 
     /**
