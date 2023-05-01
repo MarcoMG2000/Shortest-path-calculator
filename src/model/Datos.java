@@ -67,7 +67,7 @@ public class Datos {
         Integer[] adj = new Integer[2];
         adj[0] = Integer.valueOf(etf);
         adj[1] = v;
-        grafo.get(Integer.parseInt(eti)).añadirNodoAdj(adj);
+        grafo.get(Integer.parseInt(eti)-1).añadirNodoAdj(adj);
     }
     
     public int getNNodos() {
