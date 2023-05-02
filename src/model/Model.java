@@ -90,6 +90,10 @@ public class Model {
         this.grafo = al;
     }
     
+    public ArrayList<NodoLectura> getNodosL(){
+        return datos.getNodosL();
+    }
+    
     public Datos getDatos(){
         return datos;
     }

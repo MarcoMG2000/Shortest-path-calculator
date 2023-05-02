@@ -175,4 +175,8 @@ public class Datos {
     public ArrayList<Nodo> getGrafo(){
         return grafo;
     }
+    
+    public ArrayList<NodoLectura> getNodosL(){
+        return nodosL;
+    }
 }

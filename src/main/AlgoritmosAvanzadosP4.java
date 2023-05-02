@@ -125,11 +125,11 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         vista = new View();
         controlador = new Controller();
 
-        //modelo.setVista(vista);
+        modelo.setVista(vista);
         modelo.setControlador(controlador);
 
-        //vista.setModelo(modelo);
-        //vista.setControlador(controlador);
+        vista.setModelo(modelo);
+        vista.setControlador(controlador);
 
         controlador.setModelo(modelo);
         
@@ -137,7 +137,7 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
       //  controlador.dijkstra(n1.getnNodo(), n5);
 //        System.out.println(Arrays.toString(modelo.getDistMin()));
 //        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
-        //controlador.setVista(vista);
+        controlador.setVista(vista);
 
         vista.mostrar();
     }

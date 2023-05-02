@@ -16,27 +16,27 @@ public class NodoLectura {
         salientes = new ArrayList <Arista> ();
     }
     
-    protected void ponArista(Arista a) {
+    public void ponArista(Arista a) {
         salientes.add(a);
     }
     
-    protected String getEtiqueta() {
+    public String getEtiqueta() {
         return etiqueta;
     }
     
-    protected int getX() {
+    public int getX() {
         return X;
     }
     
-    protected int getY() {
+    public int getY() {
         return Y;
     }
 
-    protected int getNAristas() {
+    public int getNAristas() {
         return salientes.size();
     }
 
-    protected Arista getArista(int i) {
+    public Arista getArista(int i) {
         return salientes.get(i);
     }
 }

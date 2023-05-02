@@ -106,6 +106,11 @@ public class View extends JFrame{
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    
+        protected void verGrafoClicked() {
+            this.graphPanel.repaint();
+
+    }
 
     // GETTERS & SETTERS
     public Controller getControlador() {
