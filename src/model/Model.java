@@ -7,6 +7,8 @@
  */
 package model;
 
+import sax.NodoLectura;
+import sax.Datos;
 import view.View;
 import controller.Controller;
 import java.util.ArrayList;

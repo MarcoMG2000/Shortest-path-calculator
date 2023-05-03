@@ -1,7 +1,9 @@
-package model;
+package sax;
 
+import sax.Arista;
 import main.Errores;
 import java.util.ArrayList;
+import model.Nodo;
 
 public class Datos {
 

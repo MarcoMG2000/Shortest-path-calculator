@@ -24,7 +24,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.Scrollable;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import model.NodoLectura;
+import sax.NodoLectura;
 
 /**
  * Panel para pintar los puntos generados.

@@ -1,5 +1,6 @@
-package model;
+package sax;
 
+import sax.Arista;
 import java.util.ArrayList;
 
 public class NodoLectura {

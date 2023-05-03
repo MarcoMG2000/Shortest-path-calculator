@@ -10,7 +10,7 @@ package main;
 import controller.Controller;
 import java.util.ArrayList;
 import java.util.Arrays;
-import model.Datos;
+import sax.Datos;
 //import mesurament.Mesurament;
 import model.Model;
 import model.Nodo;
@@ -136,7 +136,7 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         System.out.println(Arrays.toString(controlador.dijkstraRec(1, modelo.getGrafo().get(4))));
       //  controlador.dijkstra(n1.getnNodo(), n5);
 //        System.out.println(Arrays.toString(modelo.getDistMin()));
-//        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
+        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
         controlador.setVista(vista);
 
         vista.mostrar();
