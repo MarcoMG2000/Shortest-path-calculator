@@ -78,7 +78,7 @@ public class Controller {
                 int pesoArista = arista[1];
                 int nodoAdj = arista[0] - 1;
                 /*Si la distancia actual es menor la añadimos a la cola.*/
-                if (!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj]) {
+                if (distActual + pesoArista < distMin[nodoAdj]) {
                     distMin[nodoAdj] = distActual + pesoArista;
                     nodosPrevios[nodoAdj] = nodoActual;
                     colaP.add(new Par(distMin[nodoAdj], nodoAdj));
@@ -115,13 +115,14 @@ public class Controller {
     private boolean dijkstraRecAux(int nodoActual, int distActual, Set<Integer> visitados,
             PriorityQueue<Par> colaP, int[] nodosPrevios, int[] distMin, Nodo nDestino) {
         if (visitados.contains(nodoActual)) {
-            return false; // Podar si el nodo ya fue visitado
+            Par parActual = colaP.poll();
+            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino);
         }
         visitados.add(nodoActual);
         for (Integer[] arista : modelo.getGrafo().get(nodoActual).getAdjacentes()) {
             int pesoArista = arista[1];
             int nodoAdj = arista[0] - 1;
-            if (!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj]) {
+            if (distActual + pesoArista < distMin[nodoAdj]) {
                 distMin[nodoAdj] = distActual + pesoArista;
                 nodosPrevios[nodoAdj] = nodoActual;
                 colaP.add(new Par(distMin[nodoAdj], nodoAdj));

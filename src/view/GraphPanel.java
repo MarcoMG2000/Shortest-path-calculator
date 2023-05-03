@@ -68,7 +68,7 @@ public class GraphPanel extends JPanel {
                 
             }
         }
-        
+
     }
     
 }
