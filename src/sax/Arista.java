@@ -5,9 +5,7 @@
  */
 package sax;
 
-/
-import model.NodoLectura;
-**
+/**
  *
  * @author mascport
  */

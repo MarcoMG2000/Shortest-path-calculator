@@ -11,20 +11,13 @@ import model.Model;
 import controller.Controller;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
+
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -66,12 +59,8 @@ public class View extends JFrame{
      * JFrame.
      */
     public void mostrar() {
-        this.setTitle("Práctica 4 - Algoritmos Avanzados");
-        this.setLayout(null);
-        this.setResizable(false);
-
-        this.GraphWidth = 400;
-        this.GraphHeight = 600;
+        this.GraphWidth = 650;
+        this.GraphHeight = 700;
 
         // DIMENSION DEL JFRAME
         setSize(this.GraphWidth + this.MARGENLAT * 2, this.GraphHeight + this.MARGENVER + 40);
@@ -82,18 +71,7 @@ public class View extends JFrame{
 
         // GRAPH PANEL
         graphPanel = new GraphPanel(this, GraphWidth, GraphHeight);
-        
-//        JScrollPane scrollpane = new JScrollPane(graphPanel);
-//        scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//        getContentPane().add(scrollpane, BorderLayout.CENTER);
         this.add(graphPanel);
-        // Agregamos un listener para capturar el clic  
-        graphPanel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getX() + ", " + e.getY());
-            }
-        });
 
         // PANELES LATERALES
         leftPanel = new LeftLateralPanel(this);
@@ -105,10 +83,12 @@ public class View extends JFrame{
         // ÚLTIMOS AJUSTES
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        this.paintComponents(this.getGraphics());
     }
     
-        protected void verGrafoClicked() {
-            this.graphPanel.repaint();
+    protected void verGrafoClicked() {
+        this.graphPanel.repaint();
 
     }
 
@@ -135,6 +115,10 @@ public class View extends JFrame{
 
     public int getGraphHeight() {
         return GraphHeight;
+    }
+
+    protected void paintGraphPanel() {
+        this.graphPanel.paint(this.getGraphics());
     }
     
 
