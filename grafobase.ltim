@@ -28,6 +28,7 @@
 <arista>2:8:5</arista>
 <arista>2:3:6</arista>
 <arista>2:1:3</arista>
+<arista>3:2:6</arista>
 <arista>3:8:7</arista>
 <arista>3:18:5</arista>
 <arista>3:11:7</arista>
@@ -41,6 +42,7 @@
 <arista>8:2:5</arista>
 <arista>8:3:7</arista>
 <arista>8:10:11</arista>
+<arista>8:11:9</arista>
 <arista>18:3:6</arista>
 <arista>18:17:5</arista>
 <arista>18:21:8</arista>
@@ -64,11 +66,24 @@
 <arista>5:6:3</arista>
 <arista>13:15:3</arista>
 <arista>13:14:4</arista>
+<arista>14:13:4</arista>
+<arista>14:15:3</arista>
 <arista>15:14:3</arista>
 <arista>15:13:3</arista>
 <arista>15:16:8</arista>
 <arista>16:15:8</arista>
+<arista>6:5:3</arista>
 <arista>6:7:3</arista>
+<arista>7:5:3</arista>
+<arista>13:5:21</arista>
+<arista>19:3:14</arista>
+<arista>19:5:13</arista>
+<arista>19:11:12</arista>
+<arista>19:18:13</arista>
+<arista>20:17:7</arista>
+<arista>21:18:8</arista>
+
+
 
 
 </grafo>
