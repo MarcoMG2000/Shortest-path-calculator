@@ -37,7 +37,8 @@ public class Model {
         datos = new Datos();
     }
 
-    public Model(View vista, Controller controlador) {
+    public Model(View vista, Controller controlador, Datos datos) {
+        this.grafo = datos.getGrafo();
         this.vista = vista;
         this.controlador = controlador;
     }

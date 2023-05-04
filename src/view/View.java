@@ -72,6 +72,13 @@ public class View extends JFrame{
         // GRAPH PANEL
         graphPanel = new GraphPanel(this, GraphWidth, GraphHeight);
         this.add(graphPanel);
+        // Agregamos un listener para capturar el clic  
+        graphPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(e.getX()+", "+e.getY());
+            }
+        });
 
         // PANELES LATERALES
         leftPanel = new LeftLateralPanel(this);

@@ -1,26 +1,26 @@
 <grafo>
 	<tipo>nodirigido</tipo>
-	<nodo>1:Puerto de San Miguel:186:2</nodo>
-<nodo>2:San Miguel de Balansat:179:46</nodo>
-<nodo>3:Santa Gertrudis de Fruitera:171:127</nodo>
-<nodo>4:Puig den Valls:172:231</nodo>
-<nodo>5:Ibiza:164:259</nodo>
-<nodo>6:San Jorge de ses Salines:136:284</nodo>
-<nodo>7:San Francesc de s'Estany:128:321</nodo>
-<nodo>8:San Mateo de Albarca:114:67</nodo>
-<nodo>9:Santa Agnès de Corona:65:70</nodo>
-<nodo>10:San Antonio Abad:36:149</nodo>
-<nodo>11:Sant Rafel de Sa creu:138:183</nodo>
-<nodo>12:San Jose:20:239</nodo>
-<nodo>13:La Savina:162:517</nodo>
-<nodo>14:Es Pujols:208:533</nodo>
-<nodo>15:San Francisco Javier:174:550</nodo>
-<nodo>16:Es Caló:273:595</nodo>
-<nodo>17:San Juan Bautista:259:8</nodo>
-<nodo>18:Sant Llorenç de Balafia:238:76</nodo>
-<nodo>19:Santa Eulalia del Rio:290:144</nodo>
-<nodo>20:Cala San Vicente:355:19</nodo>
-<nodo>21:San Carlos:324:69</nodo>
+<nodo>1:Puerto de San Miguel:350:45</nodo>
+<nodo>2:San Miguel de Balansat:343:89</nodo>
+<nodo>3:Santa Gertrudis de Fruitera:335:170</nodo>
+<nodo>4:Puig den Valls:336:274</nodo>
+<nodo>5:Ibiza:328:302</nodo>
+<nodo>6:San Jorge de ses Salines:300:327</nodo>
+<nodo>7:San Francesc de s'Estany:292:364</nodo>
+<nodo>8:San Mateo de Albarca:278:110</nodo>
+<nodo>9:Santa Agnès de Corona:229:113</nodo>
+<nodo>10:San Antonio Abad:200:192</nodo>
+<nodo>11:Sant Rafel de Sa creu:302:226</nodo>
+<nodo>12:San Jose:184:282</nodo>
+<nodo>13:La Savina:326:560</nodo>
+<nodo>14:Es Pujols:372:576</nodo>
+<nodo>15:San Francisco Javier:338:593</nodo>
+<nodo>16:Es Caló:437:638</nodo>
+<nodo>17:San Juan Bautista:423:51</nodo>
+<nodo>18:Sant Llorenç de Balafia:402:119</nodo>
+<nodo>19:Santa Eulalia del Rio:454:187</nodo>
+<nodo>20:Cala San Vicente:519:62</nodo>
+<nodo>21:San Carlos:488:112</nodo>
 
 <arista>1:2:3</arista>
 <arista>1:17:8</arista>
@@ -28,7 +28,6 @@
 <arista>2:8:5</arista>
 <arista>2:3:6</arista>
 <arista>2:1:3</arista>
-<arista>3:2:6</arista>
 <arista>3:8:7</arista>
 <arista>3:18:5</arista>
 <arista>3:11:7</arista>
@@ -42,7 +41,6 @@
 <arista>8:2:5</arista>
 <arista>8:3:7</arista>
 <arista>8:10:11</arista>
-<arista>8:11:9</arista>
 <arista>18:3:6</arista>
 <arista>18:17:5</arista>
 <arista>18:21:8</arista>
@@ -64,24 +62,32 @@
 <arista>5:18:16</arista>
 <arista>5:3:10</arista>
 <arista>5:6:3</arista>
-<arista>13:15:3</arista>
-<arista>13:14:4</arista>
-<arista>14:13:4</arista>
-<arista>14:15:3</arista>
+<arista>5:7:3</arista>
+<arista>5:4:2</arista>
+<arista>13:15:4</arista>
+<arista>13:14:3</arista>
 <arista>15:14:3</arista>
-<arista>15:13:3</arista>
+<arista>15:13:8</arista>
 <arista>15:16:8</arista>
-<arista>16:15:8</arista>
-<arista>6:5:3</arista>
+<arista>16:15:3</arista>
 <arista>6:7:3</arista>
+<arista>6:5:3</arista>
+<arista>9:11:10</arista>
+<arista>9:8:3</arista>
+<arista>10:11:8</arista>
+<arista>10:8:11</arista>
+<arista>12:5:12</arista>
+<arista>7:6:3</arista>
 <arista>7:5:3</arista>
-<arista>13:5:21</arista>
-<arista>19:3:14</arista>
 <arista>19:5:13</arista>
-<arista>19:11:12</arista>
+<arista>19:3:14</arista>
 <arista>19:18:13</arista>
-<arista>20:17:7</arista>
+<arista>19:11:12</arista>
 <arista>21:18:8</arista>
+<arista>20:17:7</arista>
+<arista>4:5:2</arista>
+<arista>14:13:3</arista>
+<arista>14:15:3</arista>
 
 
 
