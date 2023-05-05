@@ -1,0 +1,64 @@
+<grafo>
+
+    <tipo>nodirigido</tipo>
+
+    <nodo>1:Maó:635:465</nodo>
+    <nodo>2:Sant Lluís:627:530</nodo>
+    <nodo>3:Binibèquer:605:565</nodo>
+    <nodo>4:Cala en Porter:480:490</nodo>
+    <nodo>5:Son Bou:405:435</nodo>
+    <nodo>6:Sant Tomàs:355:410</nodo>
+    <nodo>7:Cala Galdana:292:364</nodo>
+    <nodo>8:Cala en Bosc:100:400</nodo>
+    <nodo>9:Cala Blanca:107:324</nodo> 
+    <nodo>10:Ciutadella de Menorca:115:280</nodo>
+    <nodo>11:Cala Morell:172:195</nodo>
+    <nodo>12:Ferreries:322:304</nodo>
+    <nodo>13:Es Mercadal:425:295</nodo>
+    <nodo>14:Es Migjorn Gran:372:364</nodo>
+    <nodo>15:Alaior:483:385</nodo>
+    <nodo>16:Fornells:470:190</nodo>
+    <nodo>17:Arenal d'en Castell:545:240</nodo>
+
+    <arista>1:2:6</arista>
+    <arista>1:4:12</arista>
+    <arista>1:15:13</arista>
+    <arista>1:16:27</arista>    
+    <arista>1:17:20</arista>
+    
+    <arista>2:3:6</arista>
+    <arista>2:4:17</arista>
+
+    <arista>3:4:19</arista>
+
+    <arista>4:15:11</arista>
+
+    <arista>5:15:10</arista> 
+
+    <arista>6:14:5</arista>
+
+    <arista>7:12:8</arista>
+    
+    <arista>8:9:8</arista>
+
+    <arista>9:10:5</arista>
+
+    <arista>10:11:10</arista>
+    <arista>10:12:17</arista>
+
+    <arista>12:13:8</arista>
+    <arista>12:14:7</arista>
+
+    <arista>13:14:7</arista>
+    <arista>13:15:10</arista>
+    <arista>13:16:9</arista>
+    <arista>13:17:18</arista>
+
+    <arista>14:15:12</arista>
+
+    <arista>15:16:19</arista>
+    <arista>15:17:12</arista>
+
+    <arista>16:17:16</arista>
+
+</grafo>
