@@ -59,7 +59,7 @@ public class View extends JFrame{
      * JFrame.
      */
     public void mostrar() {
-        this.GraphWidth = 650;
+        this.GraphWidth = 800;
         this.GraphHeight = 700;
 
         // DIMENSION DEL JFRAME

@@ -41,6 +41,7 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         //////////
         // Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
         MeuSax sax = new MeuSax("grafobase.ltim", this);
+//MeuSax sax = new MeuSax("menorca.ltim", this);
         sax.llegir();
         modelo.actualizarNNodos();
         //modelo.setNodoInicio(modelo.getGrafo().get(0));
