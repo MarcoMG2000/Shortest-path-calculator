@@ -21,12 +21,14 @@ import view.View;
  * Controlador de la aplicación, aquí se procesarán las funciones y los cálculos
  * de la aplicación.
  */
-public class Controller {
+public class Controller implements Runnable {
 
     // PUNTEROS DEL PATRÓN MVC
     private Model modelo;
     private View vista;
     private int[] nodosPrevios;
+    private int nInicio;
+    private Nodo nDestino;
 
     // CONSTRUCTORS
     public Controller() {
@@ -37,7 +39,7 @@ public class Controller {
         this.vista = vista;
     }
 
-    public int[] dijkstra(int nInicio, Nodo nDestino) {
+    public int[] dijkstra() {
         int numNodos = modelo.getTotalNodos();
         int nodoInicio = nInicio - 1;
         /*Creamos una PriorityQueue que contenga pares de nodo y distancia, esta
@@ -78,7 +80,8 @@ public class Controller {
                 int pesoArista = arista[1];
                 int nodoAdj = arista[0] - 1;
                 /*Si la distancia actual es menor la añadimos a la cola.*/
-                if (!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj]) {
+                //(!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj])
+                if (distActual + pesoArista < distMin[nodoAdj]) {
                     distMin[nodoAdj] = distActual + pesoArista;
                     nodosPrevios[nodoAdj] = nodoActual;
                     colaP.add(new Par(distMin[nodoAdj], nodoAdj));
@@ -93,7 +96,7 @@ public class Controller {
         return distMin;
     }
 
-    public int[] dijkstraRec(int nInicio, Nodo nDestino) {
+    public int[] dijkstraRec() {
         int numNodos = modelo.getTotalNodos();
         int nodoInicio = nInicio - 1;
         int[] distMin = new int[numNodos];
@@ -106,7 +109,7 @@ public class Controller {
         PriorityQueue<Par> colaP = new PriorityQueue<>(Comparator.comparingInt(p -> p.distancia));
 
         dijkstraRecAux(nodoInicio, 0, visitados, colaP, nodosPrevios, distMin, nDestino);
-        
+
         modelo.setNodosPrevios(nodosPrevios);
         modelo.setDistMin(distMin);
         return distMin;
@@ -115,13 +118,15 @@ public class Controller {
     private boolean dijkstraRecAux(int nodoActual, int distActual, Set<Integer> visitados,
             PriorityQueue<Par> colaP, int[] nodosPrevios, int[] distMin, Nodo nDestino) {
         if (visitados.contains(nodoActual)) {
-            return false; // Podar si el nodo ya fue visitado
+            Par parActual = colaP.poll();
+            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino); // Podar si el nodo ya fue visitado
         }
         visitados.add(nodoActual);
         for (Integer[] arista : modelo.getGrafo().get(nodoActual).getAdjacentes()) {
             int pesoArista = arista[1];
             int nodoAdj = arista[0] - 1;
-            if (!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj]) {
+            //(!visitados.contains(nodoAdj) && distActual + pesoArista < distMin[nodoAdj])
+            if (distActual + pesoArista < distMin[nodoAdj]) {
                 distMin[nodoAdj] = distActual + pesoArista;
                 nodosPrevios[nodoAdj] = nodoActual;
                 colaP.add(new Par(distMin[nodoAdj], nodoAdj));
@@ -140,6 +145,22 @@ public class Controller {
         return modelo;
     }
 
+    public int getnInicio() {
+        return nInicio;
+    }
+
+    public void setnInicio(int nInicio) {
+        this.nInicio = nInicio;
+    }
+
+    public Nodo getnDestino() {
+        return nDestino;
+    }
+
+    public void setnDestino(Nodo nDestino) {
+        this.nDestino = nDestino;
+    }
+
     public void setModelo(Model modelo) {
         this.modelo = modelo;
     }
@@ -150,6 +171,11 @@ public class Controller {
 
     public void setVista(View vista) {
         this.vista = vista;
+    }
+
+    @Override
+    public void run() {
+        dijkstraRec();
     }
 
     public class Par {

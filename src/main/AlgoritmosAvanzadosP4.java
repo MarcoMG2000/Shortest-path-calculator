@@ -24,7 +24,8 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
 
     private Model modelo;    // Punter al Model del patró
     private View vista;    // Punter a la Vista del patró
-    private Controller controlador;  // punter al Control del patró
+    private Controller controlador1;  // punter al Control del patró
+    private Controller controlador2;
 
     public static void main(String[] args) {
         //Mesurament.mesura();
@@ -40,11 +41,11 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         /*
         Todo esto lo he necesitado para poder hacer una prueba de funcionamiento
          */
-        Nodo n1 = new Nodo(1,"");
-        Nodo n2 = new Nodo(2,"");
-        Nodo n3 = new Nodo(3,"");
-        Nodo n4 = new Nodo(4,"");
-        Nodo n5 = new Nodo(5,"");
+        Nodo n1 = new Nodo(1, "");
+        Nodo n2 = new Nodo(2, "");
+        Nodo n3 = new Nodo(3, "");
+        Nodo n4 = new Nodo(4, "");
+        Nodo n5 = new Nodo(5, "");
         Integer[] adj1 = new Integer[2];
         Integer[] adj2 = new Integer[2];
         Integer[] adj3 = new Integer[2];
@@ -89,7 +90,7 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         adj10[0] = 2;
         adj10[1] = 2;
         n4.añadirNodoAdj(adj10);
-        adj11[0] = 1;
+        adj11[0] = 3;
         adj11[1] = 1;
         n4.añadirNodoAdj(adj11);
         adj12[0] = 5;
@@ -111,29 +112,41 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
         modelo.setTotalNodos(5);
         modelo.setTotalAristas(7);
         modelo.setNodoInicio(n1);
-
+        /*
         //////////
         // Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
         MeuSax sax = new MeuSax("grafobase.ltim", this);
         sax.llegir();
-        //modelo.actualizarNNodos();
-        //modelo.setNodoInicio(modelo.getGrafo().get(0));
-        //System.out.println("nodes llegits = " + modelo.getTotalNodos());
+        Datos datos = modelo.getDatos();
+        modelo.actualizarNNodos();
+        modelo.setNodoInicio(modelo.getGrafo().get(0));
+        System.out.println("nodes llegits = " + modelo.getTotalNodos());
         //////////
-        
+         */
+
         //vista = new View();
-        controlador = new Controller();
+        controlador1 = new Controller();
+        controlador2 = new Controller();
+
+        //Establecemos el nInicio y nDestino de cada controlador
+        controlador1.setnInicio(1);
+        controlador2.setnInicio(3);
+        controlador1.setnDestino(n3);
+        controlador2.setnDestino(n5);
 
         //modelo.setVista(vista);
-        modelo.setControlador(controlador);
+        modelo.setControlador(controlador1);
 
         //vista.setModelo(modelo);
-        //vista.setControlador(controlador);
-
-        controlador.setModelo(modelo);
-        controlador.dijkstra(n1.getnNodo(), n5);
-        System.out.println(Arrays.toString(modelo.getDistMin()));
-        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
+        //vista.setControlador(controlador1);
+        controlador1.setModelo(modelo);
+        controlador2.setModelo(modelo);
+        controlador1.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
+        controlador2.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
         //controlador.setVista(vista);
 
         //vista.mostrar();
