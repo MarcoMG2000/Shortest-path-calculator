@@ -84,8 +84,8 @@ public class GraphPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         
         // DIBUJAMOS EL MAPA DEFAULT = pitiusas
-        ImageIcon icon = new ImageIcon("src/mapa/pitiuses.png");
-//        ImageIcon icon = new ImageIcon("src/mapa/menorca.png");
+//        ImageIcon icon = new ImageIcon("src/mapa/pitiuses.png");
+        ImageIcon icon = new ImageIcon("src/mapa/menorca.png");
         g2d.drawImage(icon.getImage(), 0, 0, null);
         
         g2d.setColor(Color.BLUE);

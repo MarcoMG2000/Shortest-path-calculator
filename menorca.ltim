@@ -21,44 +21,70 @@
     <nodo>17:Arenal d'en Castell:545:240</nodo>
 
     <arista>1:2:6</arista>
+    <arista>2:1:6</arista>
     <arista>1:4:12</arista>
+    <arista>4:1:12</arista>
     <arista>1:15:13</arista>
-    <arista>1:16:27</arista>    
-    <arista>1:17:20</arista>
-    
+    <arista>15:1:13</arista>
+    <arista>1:16:27</arista>
+    <arista>16:1:27</arista>    
+    <arista>1:17:13</arista>
+    <arista>17:1:13</arista>
+
     <arista>2:3:6</arista>
+    <arista>3:2:6</arista>
     <arista>2:4:17</arista>
+    <arista>4:2:17</arista>
 
     <arista>3:4:19</arista>
+    <arista>4:3:19</arista>
 
     <arista>4:15:11</arista>
+    <arista>15:4:11</arista>
 
-    <arista>5:15:10</arista> 
+    <arista>5:15:10</arista>
+    <arista>15:5:10</arista> 
 
     <arista>6:14:5</arista>
+    <arista>14:6:5</arista>
 
     <arista>7:12:8</arista>
+    <arista>12:7:8</arista>
     
     <arista>8:9:8</arista>
+    <arista>9:8:8</arista>
 
     <arista>9:10:5</arista>
+    <arista>10:9:5</arista>
 
     <arista>10:11:10</arista>
+    <arista>11:10:10</arista>
     <arista>10:12:17</arista>
+    <arista>12:10:17</arista>
 
     <arista>12:13:8</arista>
+    <arista>13:12:8</arista>
     <arista>12:14:7</arista>
+    <arista>14:12:7</arista>
 
     <arista>13:14:7</arista>
+    <arista>14:13:7</arista>
     <arista>13:15:10</arista>
+    <arista>15:13:10</arista>
     <arista>13:16:9</arista>
+    <arista>16:13:9</arista>
     <arista>13:17:18</arista>
+    <arista>17:13:18</arista>
 
     <arista>14:15:12</arista>
+    <arista>15:14:12</arista>
 
     <arista>15:16:19</arista>
+    <arista>16:15:19</arista>
     <arista>15:17:12</arista>
+    <arista>17:15:12</arista>
 
     <arista>16:17:16</arista>
+    <arista>17:16:16</arista>
 
 </grafo>
