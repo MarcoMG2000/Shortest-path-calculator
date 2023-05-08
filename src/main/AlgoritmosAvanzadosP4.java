@@ -24,7 +24,8 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
 
     private Model modelo;    // Punter al Model del patró
     private View vista;    // Punter a la Vista del patró
-    private Controller controlador;  // punter al Control del patró
+    private Controller controlador1;  // punter al Control del patró
+    private Controller controlador2;
 
     public static void main(String[] args) {
         //Mesurament.mesura();
@@ -37,34 +38,40 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
      */
     private void MVCInit() {
         modelo = new Model();
+        vista = new View();
         
-        //////////
-//         Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
-//        MeuSax sax = new MeuSax("grafobase.ltim", this);
-        MeuSax sax = new MeuSax("pitiuses.ltim", modelo);
+        // Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
+        MeuSax sax = new MeuSax("menorca.ltim", this);
         sax.llegir();
         modelo.actualizarNNodos();
-        //modelo.setNodoInicio(modelo.getGrafo().get(0));
-        //System.out.println("nodes llegits = " + modelo.getTotalNodos());
-        //////////
-        
-        vista = new View();
-        controlador = new Controller();
 
-        modelo.setVista(vista);
-        modelo.setControlador(controlador);
+        //vista = new View();
+        controlador1 = new Controller();
+        controlador2 = new Controller();
 
-        vista.setModelo(modelo);
-        vista.setControlador(controlador);
+        //Establecemos el nInicio y nDestino de cada controlador
+        controlador1.setnInicio(1);
+        controlador1.setnDestino(modelo.getGrafo().get(3-1));
+        
+        controlador2.setnInicio(3);
+        controlador2.setnDestino(modelo.getGrafo().get(5));
 
-        controlador.setModelo(modelo);
-        controlador.setVista(vista);
+        controlador1.setModelo(modelo);
+        controlador2.setModelo(modelo);
         
-        System.out.println(Arrays.toString(controlador.dijkstraRec(1, modelo.getGrafo().get(4))));
-      //  controlador.dijkstra(n1.getnNodo(), n5);
-//        System.out.println(Arrays.toString(modelo.getDistMin()));
-        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
+        //modelo.setVista(vista);
+        //modelo.setControlador(controlador1);
+
+        //vista.setModelo(modelo);
+        //vista.setControlador(controlador1);
         
+        controlador1.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
+        controlador2.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
+        //controlador.setVista(vista);
 
         vista.mostrar();
     }
