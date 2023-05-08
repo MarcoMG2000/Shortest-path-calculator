@@ -30,13 +30,19 @@ import sax.NodoLectura;
  */
 public class GraphPanel extends JPanel {
 
+    private static final String ICONS_ROUTE = "src/mapa/icons/";
+    
     private View vista;
+    private String mapaRoute;
     
     private final MouseListener labelListener;
+    private JLabel[] labelNodos;
     private int nodoActual = -1;
     
 
-    public GraphPanel(View v, int width, int height) {
+    public GraphPanel(View v, int width, int height, String mapaRoute) {
+        this.mapaRoute = mapaRoute;
+        
         vista = v;
         Border borde = new LineBorder(Color.BLACK, 2);
         setBorder(borde);
@@ -75,6 +81,10 @@ public class GraphPanel extends JPanel {
             @Override
             public void mouseReleased(MouseEvent me) {}
         };
+        
+        initLabels();
+        
+        
     }
 
     @Override
@@ -85,7 +95,7 @@ public class GraphPanel extends JPanel {
         
         // DIBUJAMOS EL MAPA DEFAULT = pitiusas
 //        ImageIcon icon = new ImageIcon("src/mapa/pitiuses.png");
-        ImageIcon icon = new ImageIcon("src/mapa/menorca.png");
+        ImageIcon icon = new ImageIcon(this.mapaRoute);
         g2d.drawImage(icon.getImage(), 0, 0, null);
         
         g2d.setColor(Color.BLUE);
@@ -98,15 +108,7 @@ public class GraphPanel extends JPanel {
             NodoLectura NodoActual = nodosL.get(i);
             //g2d.fillOval(nodosL.get(i).getX()-2, nodosL.get(i).getY()-2, 5, 5);
                         
-            JLabel label = new JLabel();
-            label.setIcon(new ImageIcon("src/mapa/icons/start_icon.png"));
-            label.setBounds(NodoActual.getX(), NodoActual.getY(), 24, 24);
-            label.setBorder(new LineBorder(Color.BLACK, 2));
-            label.setName("" + (i+1));
-            label.addMouseListener(this.labelListener);
-            this.add(label);
-            
-            
+                        
             int nAristas = NodoActual.getNAristas();
             
             for (int j = 0; j < nAristas; j++) {
@@ -122,6 +124,30 @@ public class GraphPanel extends JPanel {
 
         }
 
+    }
+
+    void reset(String ruta) {
+        this.mapaRoute = ruta;
+        for(JLabel label: labelNodos){
+            this.remove(label);
+        }
+        initLabels();
+    }
+
+    private void initLabels() {
+        int i = 0;
+        this.labelNodos = new JLabel[vista.getModelo().getTotalNodos()];
+        for (NodoLectura nodoActual: vista.getModelo().getNodosL()) {
+            
+            this.labelNodos[i] = new JLabel();
+            this.labelNodos[i].setName("" + (i+1));
+            this.labelNodos[i].setIcon(new ImageIcon(ICONS_ROUTE + "start_icon.png"));
+            this.labelNodos[i].setBounds(nodoActual.getX(), nodoActual.getY(), 24, 24);
+            this.labelNodos[i].setBorder(new LineBorder(Color.BLACK, 2));            
+            this.labelNodos[i].addMouseListener(this.labelListener);
+
+            this.add(this.labelNodos[i++]);
+        }
     }
     
 }

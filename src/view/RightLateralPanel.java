@@ -43,7 +43,7 @@ public class RightLateralPanel extends JPanel {
         this.setBorder(new LineBorder(Color.BLACK, 2));
         
         // VER GRAFO BUTTON
-        this.verGrafo = new JButton("Ver grafo");
+        this.verGrafo = new JButton("Mostrar Ruta");
         this.verGrafo.setLayout(null);
         this.verGrafo.setBounds(10, height - 100, width - 20, 90);
         this.add(verGrafo);
