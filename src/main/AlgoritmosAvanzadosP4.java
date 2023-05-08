@@ -38,17 +38,12 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
      */
     private void MVCInit() {
         modelo = new Model();
+        vista = new View();
         
-        //////////
-//         Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
-//        MeuSax sax = new MeuSax("grafobase.ltim", this);
-MeuSax sax = new MeuSax("menorca.ltim", this);
+        // Provisionalmente se carga desde aquí el fichero. Cuando se tenga la GUI se cargará desde allí
+        MeuSax sax = new MeuSax("menorca.ltim", this);
         sax.llegir();
         modelo.actualizarNNodos();
-        //modelo.setNodoInicio(modelo.getGrafo().get(0));
-        //System.out.println("nodes llegits = " + modelo.getTotalNodos());
-        //////////
-         */
 
         //vista = new View();
         controlador1 = new Controller();
@@ -56,17 +51,20 @@ MeuSax sax = new MeuSax("menorca.ltim", this);
 
         //Establecemos el nInicio y nDestino de cada controlador
         controlador1.setnInicio(1);
+        controlador1.setnDestino(modelo.getGrafo().get(3-1));
+        
         controlador2.setnInicio(3);
-        controlador1.setnDestino(n3);
-        controlador2.setnDestino(n5);
+        controlador2.setnDestino(modelo.getGrafo().get(5));
 
+        controlador1.setModelo(modelo);
+        controlador2.setModelo(modelo);
+        
         //modelo.setVista(vista);
-        modelo.setControlador(controlador1);
+        //modelo.setControlador(controlador1);
 
         //vista.setModelo(modelo);
         //vista.setControlador(controlador1);
-        controlador1.setModelo(modelo);
-        controlador2.setModelo(modelo);
+        
         controlador1.run();
         System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
         System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
@@ -75,7 +73,7 @@ MeuSax sax = new MeuSax("menorca.ltim", this);
         System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
         //controlador.setVista(vista);
 
-        //vista.mostrar();
+        vista.mostrar();
     }
 
     /**
