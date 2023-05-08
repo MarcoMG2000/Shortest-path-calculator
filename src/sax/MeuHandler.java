@@ -6,6 +6,7 @@
 package sax;
 
 import main.AlgoritmosAvanzadosP4;
+import model.Model;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -16,15 +17,15 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class MeuHandler extends DefaultHandler {
 
-    private AlgoritmosAvanzadosP4 prog;
+    private Model modelo;
     private boolean enTipo;
     private boolean enGrafo;
     private boolean enNodo;
     private boolean enArista;
 
-    public MeuHandler(AlgoritmosAvanzadosP4 p) {
+    public MeuHandler(Model m) {
         super();
-        prog = p;
+        modelo = m;
         enTipo = enGrafo = enNodo = enArista = false;
     }
 
@@ -58,7 +59,7 @@ public class MeuHandler extends DefaultHandler {
     @Override
     public void characters(char ch[], int start, int length)
             throws SAXException {
-        Datos dat = prog.getDatos();
+        Datos dat = modelo.getDatos();
         String s[];
         String value = new String(ch, start, length).trim();
         if (enNodo) {

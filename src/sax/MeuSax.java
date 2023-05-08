@@ -5,12 +5,12 @@
  */
 package sax;
 
-import main.AlgoritmosAvanzadosP4;
 import main.Errores;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import model.Model;
 
 /**
  *
@@ -19,11 +19,11 @@ import javax.xml.parsers.SAXParserFactory;
 public class MeuSax {
 
     private String fic;
-    private AlgoritmosAvanzadosP4 prog;
+    private Model modelo;
 
-    public MeuSax(String f, AlgoritmosAvanzadosP4 p) {
+    public MeuSax(String f, Model m) {
         fic = f;
-        prog = p;
+        modelo = m;
     }
 
     public void llegir() {
@@ -32,7 +32,7 @@ public class MeuSax {
             InputStream xmlInput
                     = new FileInputStream(fic);
             SAXParser saxParser = factory.newSAXParser();
-            MeuHandler handler = new MeuHandler(prog);
+            MeuHandler handler = new MeuHandler(modelo);
             saxParser.parse(xmlInput, handler);
         } catch (Exception e) {
             Errores.informaError(e);
