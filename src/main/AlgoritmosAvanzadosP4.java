@@ -24,7 +24,8 @@ public class AlgoritmosAvanzadosP4 implements InterfazPrincipal {
 
     private Model modelo;    // Punter al Model del patró
     private View vista;    // Punter a la Vista del patró
-    private Controller controlador;  // punter al Control del patró
+    private Controller controlador1;  // punter al Control del patró
+    private Controller controlador2;
 
     public static void main(String[] args) {
         //Mesurament.mesura();
@@ -47,26 +48,34 @@ MeuSax sax = new MeuSax("menorca.ltim", this);
         //modelo.setNodoInicio(modelo.getGrafo().get(0));
         //System.out.println("nodes llegits = " + modelo.getTotalNodos());
         //////////
-        
-        vista = new View();
-        controlador = new Controller();
+         */
 
-        modelo.setVista(vista);
-        modelo.setControlador(controlador);
+        //vista = new View();
+        controlador1 = new Controller();
+        controlador2 = new Controller();
 
-        vista.setModelo(modelo);
-        vista.setControlador(controlador);
+        //Establecemos el nInicio y nDestino de cada controlador
+        controlador1.setnInicio(1);
+        controlador2.setnInicio(3);
+        controlador1.setnDestino(n3);
+        controlador2.setnDestino(n5);
 
-        controlador.setModelo(modelo);
-        controlador.setVista(vista);
-        
-        System.out.println(Arrays.toString(controlador.dijkstraRec(1, modelo.getGrafo().get(4))));
-      //  controlador.dijkstra(n1.getnNodo(), n5);
-//        System.out.println(Arrays.toString(modelo.getDistMin()));
-        System.out.println(Arrays.toString(modelo.getNodosPrevios()));
-        
+        //modelo.setVista(vista);
+        modelo.setControlador(controlador1);
 
-        vista.mostrar();
+        //vista.setModelo(modelo);
+        //vista.setControlador(controlador1);
+        controlador1.setModelo(modelo);
+        controlador2.setModelo(modelo);
+        controlador1.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
+        controlador2.run();
+        System.out.println("Distancia min: " + Arrays.toString(modelo.getDistMin()));
+        System.out.println("Nodos previos: " + Arrays.toString(modelo.getNodosPrevios()));
+        //controlador.setVista(vista);
+
+        //vista.mostrar();
     }
 
     /**
