@@ -21,7 +21,9 @@ public class Model {
 
     // PUNTEROS DEL PATRÓN MVC
     private View vista;
-    private Controller controlador;
+    private Controller controlador1;
+    private Controller controlador2;
+    
     private int totalNodos;
     private int totalAristas;
     private Nodo nodoInicio;
@@ -37,10 +39,11 @@ public class Model {
         datos = new Datos();
     }
 
-    public Model(View vista, Controller controlador, Datos datos) {
+    public Model(View vista, Controller controlador1, Controller controlador2, Datos datos) {
         this.grafo = datos.getGrafo();
         this.vista = vista;
-        this.controlador = controlador;
+        this.controlador1 = controlador1;
+        this.controlador2 = controlador2;
     }
 
     // CLASS METHODS
@@ -53,14 +56,22 @@ public class Model {
         this.vista = vista;
     }
 
-    public Controller getControlador() {
-        return controlador;
+    public Controller getControlador1() {
+        return controlador1;
     }
 
-    public void setControlador(Controller controlador) {
-        this.controlador = controlador;
+    public void setControlador1(Controller controlador1) {
+        this.controlador1 = controlador1;
     }
 
+    public Controller getControlador2() {
+        return controlador2;
+    }
+
+    public void setControlador2(Controller controlador2) {
+        this.controlador2 = controlador2;
+    }
+    
     public int getTotalNodos() {
         return totalNodos;
     }

@@ -60,6 +60,7 @@ public class View extends JFrame{
     public View(Controller controlador, Model modelo) {
         this.controlador = controlador;
         this.modelo = modelo;
+        initModel();
     }
 
     // CLASS METHODS
@@ -202,6 +203,11 @@ public class View extends JFrame{
     protected void paintGraphPanel() {
         this.graphPanel.paint(this.getGraphics());
     }
-    
 
+    private void initModel() {
+        MeuSax sax = new MeuSax("pitiuses.ltim", modelo);
+        sax.llegir();
+        modelo.actualizarNNodos();
+    }
+    
 }
