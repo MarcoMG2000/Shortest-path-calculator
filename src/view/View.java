@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import model.Nodo;
 import sax.MeuSax;
 
 /**
@@ -170,7 +171,14 @@ public class View extends JFrame{
     }
     
     protected void verGrafoClicked() {
-        System.out.println("Falta Implementar");
+        Controller c1 = new Controller();
+        //graphpanel.getNodoInicial()
+        //graphpanel.getNodosIntermedios
+        c1.setModelo(modelo);
+        c1.setnInicio(20);
+        c1.setnDestino(16);
+        c1.dijkstra();
+        this.graphPanel.guardarCamino();
         this.graphPanel.repaint();
 
     }

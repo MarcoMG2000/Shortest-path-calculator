@@ -156,8 +156,8 @@ public class Controller implements Runnable {
         return nDestino;
     }
 
-    public void setnDestino(Nodo nDestino) {
-        this.nDestino = nDestino;
+    public void setnDestino(int nDestino) {
+        this.nDestino = this.modelo.getGrafo().get(nDestino-1);
     }
 
     public void setModelo(Model modelo) {

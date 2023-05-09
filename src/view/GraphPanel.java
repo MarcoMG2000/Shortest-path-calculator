@@ -39,9 +39,13 @@ public class GraphPanel extends JPanel {
     private JLabel[] labelNodos;
     private int nodoActual = -1;
     
+    private ArrayList<Integer> solucion;
+    private boolean isShowingSolution = false;
 
     public GraphPanel(View v, int width, int height, String mapaRoute) {
         this.mapaRoute = mapaRoute;
+        
+        this.solucion = new ArrayList();
         
         vista = v;
         Border borde = new LineBorder(Color.BLACK, 2);
@@ -60,7 +64,7 @@ public class GraphPanel extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent me) {
-                if(me.getComponent().getClass().equals(JLabel.class)){
+                if(!isShowingSolution & me.getComponent().getClass().equals(JLabel.class)){
                     nodoActual = Integer.parseInt(me.getComponent().getName());
                     System.out.println("Enter " + nodoActual--);
                     vista.paintComponents(vista.getGraphics());
@@ -69,7 +73,7 @@ public class GraphPanel extends JPanel {
 
             @Override
             public void mouseExited(MouseEvent me) {
-                if(me.getComponent().getClass().equals(JLabel.class)){
+                if(!isShowingSolution & me.getComponent().getClass().equals(JLabel.class)){
                     System.out.println("Exit " + ++nodoActual);
                     nodoActual = -1;
                     vista.paintComponents(vista.getGraphics());
@@ -108,7 +112,6 @@ public class GraphPanel extends JPanel {
             NodoLectura NodoActual = nodosL.get(i);
             //g2d.fillOval(nodosL.get(i).getX()-2, nodosL.get(i).getY()-2, 5, 5);
                         
-                        
             int nAristas = NodoActual.getNAristas();
             
             for (int j = 0; j < nAristas; j++) {
@@ -122,6 +125,24 @@ public class GraphPanel extends JPanel {
                 g2d.setStroke(new BasicStroke(3));
             }
 
+        }
+        
+        if (isShowingSolution) {
+            NodoLectura nodoAnterior = null;
+            g2d.setColor(Color.GREEN);
+
+            g2d.setStroke(new BasicStroke(8));
+
+            nodoAnterior = nodosL.get(15);
+            
+            for (Integer indice : solucion) {
+                NodoLectura nodoActual = nodosL.get((int) indice);
+
+                g2d.drawLine(nodoAnterior.getX() + 12, nodoAnterior.getY() + 12,
+                        nodoActual.getX() + 12, nodoActual.getY() + 12);
+                
+                nodoAnterior = nodoActual;
+            }
         }
 
     }
@@ -149,5 +170,22 @@ public class GraphPanel extends JPanel {
             this.add(this.labelNodos[i++]);
         }
     }
+    
+    public void guardarCamino() {
+        int[] camino = vista.getModelo().getNodosPrevios();
+        int destino = 16;
+        int previo = camino[destino - 1];
+        solucion.add(previo);
+        System.out.println(previo);
+        while (previo != -1) {
+            previo = camino[previo];
+            solucion.add(previo);
+            System.out.println(previo);
+        }
+        solucion.remove(solucion.size()-1);
+        isShowingSolution = true;
+    }
+    
+    
     
 }
