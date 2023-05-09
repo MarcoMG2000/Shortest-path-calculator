@@ -1,5 +1,5 @@
 <grafo>
-	<tipo>nodirigido</tipo>
+	<tipo>dirigido</tipo>
 <nodo>1:Puerto de San Miguel:350:45</nodo>
 <nodo>2:San Miguel de Balansat:343:89</nodo>
 <nodo>3:Santa Gertrudis de Fruitera:335:170</nodo>

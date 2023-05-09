@@ -51,7 +51,7 @@ public class View extends JFrame{
     
     private JComboBox<String> JComboMapas;
     protected final String[] mapas = {"Eivissa i Formentera", "Menorca", "Mallorca"};
-    protected final String[] rutas_mapas = {"src/mapa/pitiuses.png", "src/mapa/menorca.png", "src/mapa/menorca.png"};
+    protected final String[] rutas_mapas = {"src/mapa/pitiuses.png", "src/mapa/menorca.png", "src/mapa/mallorca.png"};
 
     // CONSTRUCTORS
     public View() {
@@ -138,7 +138,7 @@ public class View extends JFrame{
                     case "Mallorca":
                         modelo = new Model();
                         //Actualizamos modelo
-                        sax = new MeuSax("menorca.ltim", modelo);
+                        sax = new MeuSax("mallorca.ltim", modelo);
                         sax.llegir();
                         modelo.actualizarNNodos();
                         

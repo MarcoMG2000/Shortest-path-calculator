@@ -1,6 +1,6 @@
 <grafo>
 
-    <tipo>nodirigido</tipo>
+    <tipo>dirigido</tipo>
 
     <nodo>1:Maó:635:465</nodo>
     <nodo>2:Sant Lluís:627:530</nodo>
