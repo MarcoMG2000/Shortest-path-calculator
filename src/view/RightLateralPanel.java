@@ -8,11 +8,17 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import static javax.swing.SwingConstants.CENTER;
+import static javax.swing.SwingConstants.TOP;
 import javax.swing.border.LineBorder;
 
 /**
@@ -23,7 +29,8 @@ public class RightLateralPanel extends JPanel {
     private View vista;
     private int x, y, width, height;
     private JButton verGrafo;
-
+    private JPanel panelSolucion;
+    private JTextArea caminoSolucion;
     TimePanel timePanel;
 
     public RightLateralPanel(View v) {
@@ -41,13 +48,13 @@ public class RightLateralPanel extends JPanel {
         this.setBounds(x, y, width, height);
         this.setBackground(Color.red);
         this.setBorder(new LineBorder(Color.BLACK, 2));
-        
+
         // VER GRAFO BUTTON
         this.verGrafo = new JButton("Mostrar Ruta");
         this.verGrafo.setLayout(null);
         this.verGrafo.setBounds(10, height - 100, width - 20, 90);
         this.add(verGrafo);
-        
+
         verGrafo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -56,8 +63,28 @@ public class RightLateralPanel extends JPanel {
 
         });
 
-        this.setVisible(true);
+        panelSolucion = new JPanel();
+        panelSolucion.setLayout(null);
+        panelSolucion.setBounds(10, 10, width - 20, (int) (height * 2 / 3) - 10);
+        panelSolucion.setBorder(new LineBorder(Color.BLACK, 2));
 
+        caminoSolucion = new JTextArea("SOLUCIÓN");
+        caminoSolucion.setFont(new Font("Arial", Font.BOLD, 16));
+        caminoSolucion.setBounds(10, 10, panelSolucion.getWidth() - 20, panelSolucion.getHeight() - 20);
+        caminoSolucion.setAlignmentX(CENTER);
+        caminoSolucion.setAlignmentY(TOP);
+        caminoSolucion.setPreferredSize(new Dimension(width - 40, (int) (height * 2 / 3) - 30));
+        caminoSolucion.setEditable(false);
+        caminoSolucion.setBackground(SystemColor.control);
+        panelSolucion.add(caminoSolucion);
+        this.add(panelSolucion);
+
+        this.setVisible(true);
+    }
+
+    public void setSolucion(String s) {
+        caminoSolucion.append("\n" + s);
+        caminoSolucion.revalidate();
     }
 
     private class TimePanel extends JPanel {

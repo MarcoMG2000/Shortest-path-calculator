@@ -22,10 +22,6 @@ public class Nodo {
         adjacentes = new ArrayList<>();
     }
 
-    public Nodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public void añadirNodoAdj(Integer[] n) {
         adjacentes.add(n);
     }
@@ -40,6 +36,10 @@ public class Nodo {
 
     public void setAdjacentes(ArrayList<Integer[]> adjacentes) {
         this.adjacentes = adjacentes;
+    }
+    
+    public String getNombreNodo(){
+        return nom;
     }
 
 }

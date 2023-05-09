@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 
 import javax.swing.JFrame;
@@ -31,7 +32,7 @@ import sax.MeuSax;
  * Vista de la aplicación, aquí interactuaremos con la aplicación y
  * visualizaremos todos los datos y los resultados de las operaciónes.
  */
-public class View extends JFrame{
+public class View extends JFrame {
 
     // PUNTEROS DEL PATRÓN MVC
     private Controller controlador;
@@ -49,7 +50,6 @@ public class View extends JFrame{
     private RightLateralPanel rightPanel;
     private GraphPanel graphPanel;
 
-    
     private JComboBox<String> JComboMapas;
     protected final String[] mapas = {"Eivissa i Formentera", "Menorca", "Mallorca"};
     protected final String[] rutas_mapas = {"src/mapa/pitiuses.png", "src/mapa/menorca.png", "src/mapa/mallorca.png"};
@@ -70,13 +70,13 @@ public class View extends JFrame{
      * JFrame.
      */
     public void mostrar() {
-        this.GraphWidth = 800;
-        this.GraphHeight = 700;
+        this.GraphWidth = 700;
+        this.GraphHeight = 600;
 
         // NOT RESIZABLE
         this.setResizable(false);
         this.setLayout(null);
-        
+
         // DIMENSION DEL JFRAME
         setSize(this.GraphWidth + this.MARGENLAT * 2, this.GraphHeight + this.MARGENVER * 3);
 
@@ -91,7 +91,7 @@ public class View extends JFrame{
         graphPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getX()+", "+e.getY());
+                System.out.println(e.getX() + ", " + e.getY());
             }
         });
 
@@ -107,22 +107,22 @@ public class View extends JFrame{
         label.setFont(new Font("Britannic Bold", Font.BOLD, 15));
         label.setBounds(getWidth() / 2 - 240, getHeight() - 75, 240, 30);
         this.add(label);
-        
+
         this.JComboMapas = new JComboBox<>(mapas);
         this.JComboMapas.setBounds(getWidth() / 2 - 60, getHeight() - 75, 240, 30);
         this.add(this.JComboMapas);
-        this.JComboMapas.addActionListener(new ActionListener(){
+        this.JComboMapas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 MeuSax sax;
-                switch(JComboMapas.getSelectedItem().toString()) {
+                switch (JComboMapas.getSelectedItem().toString()) {
                     case "Eivissa i Formentera":
                         modelo = new Model();
                         //Actualizamos modelo
                         sax = new MeuSax("pitiuses.ltim", modelo);
                         sax.llegir();
                         modelo.actualizarNNodos();
-                        
+
                         // Actualizamos vista
                         graphPanel.reset(rutas_mapas[0]);
                         break;
@@ -132,9 +132,9 @@ public class View extends JFrame{
                         sax = new MeuSax("menorca.ltim", modelo);
                         sax.llegir();
                         modelo.actualizarNNodos();
-                        
+
                         // Actualizamos vista
-                         graphPanel.reset(rutas_mapas[1]);
+                        graphPanel.reset(rutas_mapas[1]);
                         break;
                     case "Mallorca":
                         modelo = new Model();
@@ -142,7 +142,7 @@ public class View extends JFrame{
                         sax = new MeuSax("mallorca.ltim", modelo);
                         sax.llegir();
                         modelo.actualizarNNodos();
-                        
+
                         // Actualizamos vista
                         graphPanel.reset(rutas_mapas[2]);
                         break;
@@ -153,23 +153,21 @@ public class View extends JFrame{
                 graphPanel.repaint();
             }
         });
-        
-        
+
         // TITULO
         label = new JLabel("Visualizador de Rutas: Djistra y Comercio");
         label.setFont(new Font("Britannic Bold", Font.BOLD, 15));
         label.setHorizontalAlignment(0);
         label.setBounds(getWidth() / 2 - 200, 10, 400, 30);
         this.add(label);
-        
-        
+
         // ÚLTIMOS AJUSTES
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+
         this.paintComponents(this.getGraphics());
     }
-    
+
     protected void verGrafoClicked() {
         Controller c1 = new Controller();
         //graphpanel.getNodoInicial()
@@ -180,7 +178,37 @@ public class View extends JFrame{
         c1.dijkstra();
         this.graphPanel.guardarCamino();
         this.graphPanel.repaint();
+        //Necesito usar System.lineSeparator porque con \n no hace salto de linea
+        this.rightPanel.setSolucion(
+                getStringSolucion(this.graphPanel.getSolucion()));
+    }
 
+    private String getStringSolucion(ArrayList<Integer> sol) {
+        String s = "";
+        int nodo;
+        int total = 0;
+        Nodo n;
+        Integer[] n2 = null;
+        ArrayList<Integer[]> adj;
+        for (int i = 0; i < sol.size(); i++) {
+            nodo = sol.get(i);
+            n = modelo.getGrafo().get(nodo);
+            adj = n.getAdjacentes();
+            s += n.getNombreNodo() + "\n";
+            if (i < sol.size() - 1) {
+                for (int j = 0; j < adj.size(); j++) {
+                    n2 = adj.get(j);
+                    if (n2[1] == sol.get(i + 1)) {
+                        break;
+                    }
+                }
+                total += n2[1];
+                s += n2[1] + " km ↓\n";
+            }else{
+               s += "TOTAL = "+ total + " km\n"; 
+            }
+        }
+        return s;
     }
 
     // GETTERS & SETTERS
@@ -194,6 +222,14 @@ public class View extends JFrame{
 
     public Model getModelo() {
         return modelo;
+    }
+
+    public RightLateralPanel getrightPanel() {
+        return rightPanel;
+    }
+
+    public GraphPanel getgraphPanel() {
+        return graphPanel;
     }
 
     public void setModelo(Model modelo) {
@@ -217,5 +253,5 @@ public class View extends JFrame{
         sax.llegir();
         modelo.actualizarNNodos();
     }
-    
+
 }
