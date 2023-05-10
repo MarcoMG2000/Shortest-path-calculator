@@ -32,7 +32,8 @@ public class RightLateralPanel extends JPanel {
     private JButton verGrafo;
     private JPanel panelSolucion;
     private JTextArea caminoSolucion;
-    TimePanel timePanel;
+
+    private TimePanel timePanel;
     private JComboBox<String> opcionAlg;
 
     public RightLateralPanel(View v) {
@@ -50,7 +51,7 @@ public class RightLateralPanel extends JPanel {
         this.setBounds(x, y, width, height);
         this.setBackground(new Color(245, 245, 220));
         this.setBorder(new LineBorder(Color.BLACK, 2));
-
+        
         // VER GRAFO BUTTON
         this.verGrafo = new JButton("Mostrar Ruta");
         this.verGrafo.setLayout(null);
@@ -59,7 +60,7 @@ public class RightLateralPanel extends JPanel {
         this.verGrafo.setBackground(Color.BLACK);
         this.verGrafo.setFont(new Font("Arial Black", Font.PLAIN, 16));
         this.add(verGrafo);
-
+        
         verGrafo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -83,24 +84,30 @@ public class RightLateralPanel extends JPanel {
         caminoSolucion.setBackground(SystemColor.control);
         panelSolucion.add(caminoSolucion);
         this.add(panelSolucion);
-
+        
         opcionAlg = new JComboBox<String>(new String[]{"Iterativo", "Recursivo"});
         opcionAlg.setBounds(verGrafo.getX(), verGrafo.getY() - verGrafo.getHeight() / 2, verGrafo.getWidth(), verGrafo.getHeight() / 2);
         opcionAlg.setLocation(panelSolucion.getX(), panelSolucion.getY() + panelSolucion.getHeight() + 10);
         this.add(opcionAlg);
-
+        
         this.setVisible(true);
+
     }
     
-    public JComboBox<String> getOpcionAlg(){
-        return opcionAlg;
-    }
-
     public void setSolucion(String s) {
         caminoSolucion.append("\n" + s);
         caminoSolucion.revalidate();
     }
+    public void clearSolucion() {
+        caminoSolucion.setText("SOLUCIÓN");
+    }
 
+    public JComboBox<String> getOpcionAlg(){
+        return opcionAlg;
+    }
+
+    
+    
     private class TimePanel extends JPanel {
 
         private JLabel timeLabel;

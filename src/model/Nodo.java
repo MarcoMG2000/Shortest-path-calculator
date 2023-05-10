@@ -37,9 +37,9 @@ public class Nodo {
     public void setAdjacentes(ArrayList<Integer[]> adjacentes) {
         this.adjacentes = adjacentes;
     }
-    
-    public String getNombreNodo(){
-        return nom;
+
+    public String getNombreNodo() {
+        return this.nom;
     }
 
 }

@@ -140,12 +140,9 @@ public class Controller implements Runnable {
 
     // CLASS METHODS
     // SETTERS & GETTERS
+
     public void setnInicio(int nInicio) {
         this.nInicio = nInicio;
-    }
-    
-    public void setVista(View v){
-        this.vista = v;
     }
 
     public void setnDestino(int nDestino) {
@@ -154,6 +151,14 @@ public class Controller implements Runnable {
 
     public void setModelo(Model modelo) {
         this.modelo = modelo;
+    }
+
+    public View getVista() {
+        return vista;
+    }
+
+    public void setVista(View vista) {
+        this.vista = vista;
     }
 
     @Override
