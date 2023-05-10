@@ -140,20 +140,12 @@ public class Controller implements Runnable {
 
     // CLASS METHODS
     // SETTERS & GETTERS
-    public Model getModelo() {
-        return modelo;
-    }
-
-    public int getnInicio() {
-        return nInicio;
-    }
-
     public void setnInicio(int nInicio) {
         this.nInicio = nInicio;
     }
-
-    public Nodo getnDestino() {
-        return nDestino;
+    
+    public void setVista(View v){
+        this.vista = v;
     }
 
     public void setnDestino(int nDestino) {
@@ -164,17 +156,13 @@ public class Controller implements Runnable {
         this.modelo = modelo;
     }
 
-    public View getVista() {
-        return vista;
-    }
-
-    public void setVista(View vista) {
-        this.vista = vista;
-    }
-
     @Override
     public void run() {
-        dijkstraRec();
+        if(vista.getrightPanel().getOpcionAlg().getSelectedItem() == "Recursivo"){
+            dijkstraRec();
+        }else{
+            dijkstra();
+        }
     }
 
     public class Par {

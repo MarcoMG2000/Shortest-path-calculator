@@ -10,6 +10,7 @@ package view;
 import model.Model;
 import controller.Controller;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -61,6 +62,7 @@ public class View extends JFrame {
     public View(Controller controlador, Model modelo) {
         this.controlador = controlador;
         this.modelo = modelo;
+        getContentPane().setBackground(new Color(212, 191, 142)); 
         initModel();
     }
 
@@ -70,8 +72,8 @@ public class View extends JFrame {
      * JFrame.
      */
     public void mostrar() {
-        this.GraphWidth = 700;
-        this.GraphHeight = 600;
+        this.GraphWidth = 600;
+        this.GraphHeight = 500;
 
         // NOT RESIZABLE
         this.setResizable(false);
@@ -172,10 +174,11 @@ public class View extends JFrame {
         Controller c1 = new Controller();
         //graphpanel.getNodoInicial()
         //graphpanel.getNodosIntermedios
+        c1.setVista(this);
         c1.setModelo(modelo);
         c1.setnInicio(20);
         c1.setnDestino(16);
-        c1.dijkstra();
+        c1.run();
         this.graphPanel.guardarCamino();
         this.graphPanel.repaint();
         //Necesito usar System.lineSeparator porque con \n no hace salto de linea
