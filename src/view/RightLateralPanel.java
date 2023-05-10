@@ -85,7 +85,7 @@ public class RightLateralPanel extends JPanel {
         panelSolucion.add(caminoSolucion);
         this.add(panelSolucion);
         
-        opcionAlg = new JComboBox<String>(new String[]{"Iterativo", "Recursivo"});
+        opcionAlg = new JComboBox<>(new String[]{"Iterativo", "Recursivo"});
         opcionAlg.setBounds(verGrafo.getX(), verGrafo.getY() - verGrafo.getHeight() / 2, verGrafo.getWidth(), verGrafo.getHeight() / 2);
         opcionAlg.setLocation(panelSolucion.getX(), panelSolucion.getY() + panelSolucion.getHeight() + 10);
         this.add(opcionAlg);

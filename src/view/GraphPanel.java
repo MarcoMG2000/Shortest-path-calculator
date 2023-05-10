@@ -31,13 +31,13 @@ import sax.NodoLectura;
  */
 public class GraphPanel extends JPanel {
 
-    private static final String ICONS_ROUTE     = "src/mapa/icons/";
+    protected static final String ICONS_ROUTE     = "src/mapa/icons/";
     
-    private static final ImageIcon DEFAULT_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
-    private static final ImageIcon START_ICON   = new ImageIcon(ICONS_ROUTE + "start_icon.png");
-    private static final ImageIcon END_ICON     = new ImageIcon(ICONS_ROUTE + "finish_icon.png");
-    private static final ImageIcon INT_ICON     = new ImageIcon(ICONS_ROUTE + "start_icon.png");
-    private static final ImageIcon BLOQUED_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon DEFAULT_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon START_ICON   = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon END_ICON     = new ImageIcon(ICONS_ROUTE + "finish_icon.png");
+    protected static final ImageIcon INT_ICON     = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon BLOQUED_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
 
     private View vista;
     private String mapaRoute;
@@ -292,8 +292,8 @@ public class GraphPanel extends JPanel {
     public void guardarCamino() {
         solucion = new ArrayList();
         int[] camino = vista.getModelo().getNodosPrevios();
-        int destino = 16;
-        int previo = camino[destino - 1];
+        int destino = this.nodoDestino-1;
+        int previo = camino[destino];
         solucion.add(previo);
         System.out.println(previo);
         while (previo != -1) {

@@ -175,13 +175,21 @@ public class View extends JFrame{
     
     protected void verGrafoClicked() {
         Controller c1 = new Controller();
-        graphPanel.getNodoInicial();
-        graphPanel.getNodoDestino();
+        
         //graphpanel.getNodosIntermedios();
         c1.setVista(this);
         c1.setModelo(modelo);
-        c1.setnInicio(20);
-        c1.setnDestino(16);
+        if(graphPanel.getNodoInicial() == -1){
+            new Notification("Seleccione el nodo Inicial");
+            return;
+        }
+        c1.setnInicio(graphPanel.getNodoInicial());
+        
+        if(graphPanel.getNodoDestino() == -1){
+            new Notification("Seleccione el nodo Destino");
+            return;
+        }
+        c1.setnDestino(graphPanel.getNodoDestino());
         c1.run();
         this.graphPanel.guardarCamino();
         this.graphPanel.repaint();
