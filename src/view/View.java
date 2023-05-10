@@ -154,6 +154,7 @@ public class View extends JFrame{
                         System.out.println("Error: algoritmo de rescalación '" + JComboMapas.getSelectedItem().toString() + "' no encontrado");
                         return;
                 }
+                rightPanel.clearSolucion();
                 graphPanel.repaint();
             }
         });
@@ -170,8 +171,6 @@ public class View extends JFrame{
         // ÚLTIMOS AJUSTES
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
-        this.paintComponents(this.getGraphics());
     }
     
     protected void verGrafoClicked() {
@@ -262,6 +261,10 @@ public class View extends JFrame{
         MeuSax sax = new MeuSax("pitiuses.ltim", modelo);
         sax.llegir();
         modelo.actualizarNNodos();
+    }
+
+    protected LeftLateralPanel getLeftPanel() {
+        return this.leftPanel;
     }
     
 }

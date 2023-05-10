@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
 
@@ -169,18 +170,20 @@ public class GraphPanel extends JPanel {
             public void mouseEntered(MouseEvent me) {
                 if(!isShowingSolution & me.getComponent().getClass().equals(JLabel.class)){
                     String[] nodoText = me.getComponent().getName().split(":");
-                    nodoActual = Integer.parseInt(nodoText[0]);
+                    nodoActual = Integer.parseInt(nodoText[0]) - 1;
                     System.out.println("Enter " + nodoActual);
-                    vista.paintComponents(vista.getGraphics());
+                    vista.getLeftPanel().setPuebloActual(nodoActual);
+                    vista.repaint();
                 }
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 if(!isShowingSolution & me.getComponent().getClass().equals(JLabel.class)){
-                    System.out.println("Exit " + nodoActual);
+                    System.out.println("Exit " + ++nodoActual);
                     nodoActual = -1;
-                    vista.paintComponents(vista.getGraphics());
+                    vista.getLeftPanel().clearPuebloActual();
+                    vista.repaint();
                 }
             }
 
@@ -196,10 +199,19 @@ public class GraphPanel extends JPanel {
     }
 
     @Override
+    public void repaint() {
+        if (this.getGraphics() != null) {
+            paint(this.getGraphics());
+        }
+    }
+    
+    
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        Graphics2D g2d = (Graphics2D) g;
+        BufferedImage img = new BufferedImage(700, 700, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = (Graphics2D) img.getGraphics();
         
         ImageIcon icon = new ImageIcon(this.mapaRoute);
         g2d.drawImage(icon.getImage(), 0, 0, null);
@@ -246,6 +258,8 @@ public class GraphPanel extends JPanel {
                 nodoAnterior = nodoActual;
             }
         }
+        
+        g.drawImage(img, 0, 0, this);
 
     }
 
