@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/controller/Controller.java</file>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/model/Model.java</file>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/model/Nodo.java</file>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/model/Arista.java</file>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/main/AlgoritmosAvanzadosP4.java</file>
-            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/sax/MeuSax.java</file>
+            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/view/RightLateralPanel.java</file>
+            <file>file:/C:/Users/jfher/OneDrive/Documentos/GitHub/AlgoritmosAvanzadosP4/src/view/GraphPanel.java</file>
         </group>
     </open-files>
 </project-private>
