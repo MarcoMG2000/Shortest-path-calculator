@@ -197,6 +197,10 @@ public class View extends JFrame{
             c.setVista(this);
             c.setModelo(modelo);
             
+            System.out.println("Nuevo Controlador: ");
+            System.out.println("Inicial: " + nodoInicio);
+            System.out.println("Destino: " + nodoIntermedio);
+            
             c.setnInicio(nodoInicio);
             c.setnDestino(nodoIntermedio);
             
@@ -214,6 +218,10 @@ public class View extends JFrame{
         c.setnInicio(nodoInicio);
         c.setnDestino(graphPanel.getNodoDestino());
 
+        System.out.println("Nuevo Controlador: ");
+        System.out.println("Inicial: " + nodoInicio);
+        System.out.println("Destino: " + graphPanel.getNodoDestino());
+        
         hilosController.add(new Thread(c));
         Controllers.add(c);
         
@@ -226,33 +234,38 @@ public class View extends JFrame{
         }        
         
         ArrayList<Integer> solucion = new ArrayList();
+        ArrayList<Integer> Auxsolucion;
+        
         int iteracion = 1;
         for(Controller cActual : Controllers){
+            Auxsolucion = new ArrayList();
             System.out.println("Interacion " + iteracion++);
-            if(!solucion.isEmpty()) solucion.remove(solucion.size()-1);
+            //if(!solucion.isEmpty()) solucion.remove(0);
             
             int[] camino = cActual.getNodosPrevios();
             int destino = cActual.getnDestino();
-            solucion.add(destino);
+            Auxsolucion.add(destino);
             
             int previo = camino[destino];
-            solucion.add(previo);
+            Auxsolucion.add(previo);
             System.out.println(previo);
             
             while (previo != -1) {
                 previo = camino[previo];
-                solucion.add(previo);
+                Auxsolucion.add(previo);
                 System.out.println(previo);
             }
             
             
-            solucion.remove(solucion.size()-1);
+            Auxsolucion.remove(Auxsolucion.size()-1);
+            Collections.reverse(Auxsolucion);
+            
+            solucion.addAll(Auxsolucion);
             System.out.println(solucion);
 
         }
         
         
-        Collections.reverse(solucion);
         System.out.println(solucion);
         
         /**

@@ -125,34 +125,30 @@ public class Controller implements Runnable {
     public int[] dijkstraRec() {
         int numNodos = modelo.getTotalNodos();
         int nodoInicio = nInicio - 1;
-        int[] distMin = new int[numNodos];
-        int[] nodosPrevios = new int[numNodos];
+        distMin = new int[numNodos];
+        nodosPrevios = new int[numNodos];
         Arrays.fill(nodosPrevios, -1);
         Arrays.fill(distMin, Integer.MAX_VALUE);
         distMin[nodoInicio] = 0;
 
         Set<Integer> visitados = new HashSet<>();
-        PriorityQueue<Par> colaP = new PriorityQueue<>(Comparator.comparingInt(p -> p.distancia));
-
-        dijkstraRecAux(nodoInicio, 0, visitados, colaP, nodosPrevios, distMin, nDestino);
-
-        modelo.setNodosPrevios(nodosPrevios);
-        modelo.setDistMin(distMin);
-        
         for(Integer indxNodoBloqueado : modelo.getNodosBloqueados()){
             visitados.add(indxNodoBloqueado-1);
         }
+        PriorityQueue<Par> colaP = new PriorityQueue<>(Comparator.comparingInt(p -> p.distancia));
+
+        dijkstraRecAux(nodoInicio, 0, visitados, colaP, nDestino);
         
         return distMin;
     }
 
     private boolean dijkstraRecAux(int nodoActual, int distActual, Set<Integer> visitados,
-            PriorityQueue<Par> colaP, int[] nodosPrevios, int[] distMin, Nodo nDestino) {
+            PriorityQueue<Par> colaP, Nodo nDestino) {
         if (visitados.contains(nodoActual)) {
             if(colaP.isEmpty()) return false;
             
             Par parActual = colaP.poll();
-            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino); // Podar si el nodo ya fue visitado
+            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nDestino); // Podar si el nodo ya fue visitado
         }
         visitados.add(nodoActual);
         for (Integer[] arista : modelo.getGrafo().get(nodoActual).getAdjacentes()) {
@@ -167,7 +163,7 @@ public class Controller implements Runnable {
         }
         if (!colaP.isEmpty()) {
             Par parActual = colaP.poll();
-            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino);
+            return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nDestino);
         }
         return false;
     }
