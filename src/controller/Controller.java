@@ -27,6 +27,7 @@ public class Controller implements Runnable {
     private Model modelo;
     private View vista;
     private int[] nodosPrevios;
+    private int[] distMin;
     private int nInicio;
     private Nodo nDestino;
 
@@ -39,6 +40,23 @@ public class Controller implements Runnable {
         this.vista = vista;
     }
 
+    public int[] getNodosPrevios() {
+        return nodosPrevios;
+    }
+
+    public int[] getDistMin() {
+        return distMin;
+    }
+    
+    public int getnInicio(){
+        return this.nInicio;
+    }
+    
+    public int getnDestino(){
+        return modelo.getGrafo().indexOf(this.nDestino);
+    }
+    
+    
     public int[] dijkstra() {
         int numNodos = modelo.getTotalNodos();
         int nodoInicio = nInicio - 1;
@@ -47,8 +65,8 @@ public class Controller implements Runnable {
         PriorityQueue<Par> colaP = new PriorityQueue<>(Comparator.comparingInt(p -> p.distancia));
         /*En estos array alojaremos la informacion de las distancias que vamos
         obteniendo desde el origen hasta cada nodo, y el nodo previo respectivamente*/
-        int[] distMin = new int[numNodos];
-        int[] nodosPrevios = new int[numNodos];
+        distMin = new int[numNodos];
+        nodosPrevios = new int[numNodos];
         /*Rellenamos el primer array con -1 y el segundo con un valor "infinito"*/
         Arrays.fill(nodosPrevios, -1);
         Arrays.fill(distMin, Integer.MAX_VALUE);
@@ -62,6 +80,14 @@ public class Controller implements Runnable {
         volver a procesar un nodo que ya ha sido visitado y se reduce el número 
         de operaciones necesarias para completar el algoritmo.*/
         Set<Integer> visitados = new HashSet<>();
+        
+        /*Ponemos como visitados los nodos Bloqueados para que no se tomen en 
+        cuenta durante la ejecucíon del algoritmo. ATENCION: CON ESTO PODEMOS
+        LLEGAR AL FINAL DEL ALGORITMO SIN SOLUCIÓN*/
+        for(Integer indxNodoBloqueado : modelo.getNodosBloqueados()){
+            visitados.add(indxNodoBloqueado-1);
+        }
+        
         int iteraciones = 0;
         /*Sacamos el nodo de distancia mínima primero de la cola de prioridad
         y recorremos todos sus nodos adyacentes.*/
@@ -90,8 +116,9 @@ public class Controller implements Runnable {
         // Para recuperar el camino más corto desde el origen hasta un nodo destino específico,
         // se puede seguir los nodos previos desde el destino hasta el origen.
         System.out.println(iteraciones);
-        modelo.setNodosPrevios(nodosPrevios);
-        modelo.setDistMin(distMin);
+        
+        //modelo.setNodosPrevios(nodosPrevios);
+        //modelo.setDistMin(distMin);
         return distMin;
     }
 
@@ -111,6 +138,11 @@ public class Controller implements Runnable {
 
         modelo.setNodosPrevios(nodosPrevios);
         modelo.setDistMin(distMin);
+        
+        for(Integer indxNodoBloqueado : modelo.getNodosBloqueados()){
+            visitados.add(indxNodoBloqueado-1);
+        }
+        
         return distMin;
     }
 

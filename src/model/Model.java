@@ -29,6 +29,8 @@ public class Model {
     private Nodo nodoInicio;
     private ArrayList<Nodo> grafo;
     private Datos datos;
+    
+    private ArrayList<Integer> nodosBloqueados;
 
     private int[] nodosPrevios;
     private int[] distMin;
@@ -134,5 +136,15 @@ public class Model {
     public void setDistMin(int[] distMin) {
         this.distMin = distMin;
     }
+
+    public void setNodosBloqueados(ArrayList<Integer> nodosBloqueados) {
+        this.nodosBloqueados = nodosBloqueados;
+    }
+    
+    public ArrayList<Integer> getNodosBloqueados() {
+        return nodosBloqueados;
+    }
+    
+    
 
 }

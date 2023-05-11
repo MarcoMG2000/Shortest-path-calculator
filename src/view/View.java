@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JComboBox;
 
 import javax.swing.JFrame;
@@ -173,25 +174,113 @@ public class View extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
-    protected void verGrafoClicked() {
-        Controller c1 = new Controller();
-        
-        //graphpanel.getNodosIntermedios();
-        c1.setVista(this);
-        c1.setModelo(modelo);
+    protected void verGrafoClicked() throws InterruptedException {
         if(graphPanel.getNodoInicial() == -1){
             new Notification("Seleccione el nodo Inicial");
             return;
         }
-        c1.setnInicio(graphPanel.getNodoInicial());
         
         if(graphPanel.getNodoDestino() == -1){
             new Notification("Seleccione el nodo Destino");
             return;
         }
-        c1.setnDestino(graphPanel.getNodoDestino());
-        c1.run();
-        this.graphPanel.guardarCamino();
+        
+        modelo.setNodosBloqueados(graphPanel.getNodosBloqueados());
+        
+        ArrayList<Thread> hilosController = new ArrayList();
+        ArrayList<Controller> Controllers = new ArrayList();
+        int nodoInicio = graphPanel.getNodoInicial();
+        
+        Controller c;
+        for(Integer nodoIntermedio: graphPanel.getNodosIntermedios()){
+            c = new Controller();
+            c.setVista(this);
+            c.setModelo(modelo);
+            
+            c.setnInicio(nodoInicio);
+            c.setnDestino(nodoIntermedio);
+            
+            nodoInicio = nodoIntermedio;
+            
+            hilosController.add(new Thread(c));
+            Controllers.add(c);
+        }
+        
+        c = new Controller();
+        
+        c.setVista(this);
+        c.setModelo(modelo);
+
+        c.setnInicio(nodoInicio);
+        c.setnDestino(graphPanel.getNodoDestino());
+
+        hilosController.add(new Thread(c));
+        Controllers.add(c);
+        
+        for(Thread t : hilosController){
+            t.start();
+        }
+        
+        for(Thread t : hilosController){
+            t.join();
+        }        
+        
+        ArrayList<Integer> solucion = new ArrayList();
+        int iteracion = 1;
+        for(Controller cActual : Controllers){
+            System.out.println("Interacion " + iteracion++);
+            if(!solucion.isEmpty()) solucion.remove(solucion.size()-1);
+            
+            int[] camino = cActual.getNodosPrevios();
+            int destino = cActual.getnDestino();
+            solucion.add(destino);
+            
+            int previo = camino[destino];
+            solucion.add(previo);
+            System.out.println(previo);
+            
+            while (previo != -1) {
+                previo = camino[previo];
+                solucion.add(previo);
+                System.out.println(previo);
+            }
+            
+            
+            solucion.remove(solucion.size()-1);
+            System.out.println(solucion);
+
+        }
+        
+        
+        Collections.reverse(solucion);
+        System.out.println(solucion);
+        
+        /**
+        solucion = new ArrayList();
+        int[] camino = vista.getModelo().getNodosPrevios();
+        int destino = this.nodoDestino-1;
+        solucion.add(destino);
+        int previo = camino[destino];
+        solucion.add(previo);
+        System.out.println(previo);
+        while (previo != -1) {
+            previo = camino[previo];
+            solucion.add(previo);
+            System.out.println(previo);
+        }
+        solucion.remove(solucion.size()-1);
+        System.out.println(solucion);
+        Collections.reverse(solucion);
+        **/
+        
+        
+        
+        
+        
+        
+        
+        
+        this.graphPanel.guardarCamino(solucion);
         this.graphPanel.repaint();
 
     //Necesito usar System.lineSeparator porque con \n no hace salto de linea

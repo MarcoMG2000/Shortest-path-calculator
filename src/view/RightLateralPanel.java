@@ -13,6 +13,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -64,7 +66,11 @@ public class RightLateralPanel extends JPanel {
         verGrafo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                vista.verGrafoClicked();
+                try {
+                    vista.verGrafoClicked();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(RightLateralPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
         });

@@ -35,11 +35,11 @@ public class GraphPanel extends JPanel {
 
     protected static final String ICONS_ROUTE     = "src/mapa/icons/";
     
-    protected static final ImageIcon DEFAULT_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon DEFAULT_ICON = null;
     protected static final ImageIcon START_ICON   = new ImageIcon(ICONS_ROUTE + "start_icon.png");
     protected static final ImageIcon END_ICON     = new ImageIcon(ICONS_ROUTE + "finish_icon.png");
-    protected static final ImageIcon INT_ICON     = new ImageIcon(ICONS_ROUTE + "start_icon.png");
-    protected static final ImageIcon BLOQUED_ICON = new ImageIcon(ICONS_ROUTE + "start_icon.png");
+    protected static final ImageIcon INT_ICON     = new ImageIcon(ICONS_ROUTE + "intermedio_icon.png");
+    protected static final ImageIcon BLOQUED_ICON = new ImageIcon(ICONS_ROUTE + "bloqueado_icon.png");
 
     private View vista;
     private String mapaRoute;
@@ -302,7 +302,9 @@ public class GraphPanel extends JPanel {
             
             this.labelNodos[i] = new JLabel();
             this.labelNodos[i].setName("" + (i+1) + ":none");
-            this.labelNodos[i].setIcon(new ImageIcon(ICONS_ROUTE + "start_icon.png"));
+            this.labelNodos[i].setIcon(DEFAULT_ICON);
+            this.labelNodos[i].setOpaque(true);
+            this.labelNodos[i].setBackground(Color.WHITE);
             this.labelNodos[i].setBounds(nodoActual.getX(), nodoActual.getY(), 24, 24);
             this.labelNodos[i].setBorder(new LineBorder(Color.BLACK, 2));            
             this.labelNodos[i].addMouseListener(this.labelListener);
@@ -311,22 +313,8 @@ public class GraphPanel extends JPanel {
         }
     }
     
-    public void guardarCamino() {
-        solucion = new ArrayList();
-        int[] camino = vista.getModelo().getNodosPrevios();
-        int destino = this.nodoDestino-1;
-        solucion.add(destino);
-        int previo = camino[destino];
-        solucion.add(previo);
-        System.out.println(previo);
-        while (previo != -1) {
-            previo = camino[previo];
-            solucion.add(previo);
-            System.out.println(previo);
-        }
-        solucion.remove(solucion.size()-1);
-        System.out.println(solucion);
-        Collections.reverse(solucion);
+    public void guardarCamino(ArrayList<Integer> solucion) {
+        this.solucion = solucion; 
         isShowingSolution = true;
     }
 
@@ -345,6 +333,14 @@ public class GraphPanel extends JPanel {
 
     protected int getNodoDestino() {
         return this.nodoDestino;
+    }
+    
+    protected ArrayList<Integer> getNodosBloqueados(){
+        return this.nodosBloqueados;
+    }
+    
+    protected ArrayList<Integer> getNodosIntermedios(){
+        return this.nodosIntermedios;
     }
     
     
