@@ -117,6 +117,8 @@ public class Controller implements Runnable {
     private boolean dijkstraRecAux(int nodoActual, int distActual, Set<Integer> visitados,
             PriorityQueue<Par> colaP, int[] nodosPrevios, int[] distMin, Nodo nDestino) {
         if (visitados.contains(nodoActual)) {
+            if(colaP.isEmpty()) return false;
+            
             Par parActual = colaP.poll();
             return dijkstraRecAux(parActual.nodo, parActual.distancia, visitados, colaP, nodosPrevios, distMin, nDestino); // Podar si el nodo ya fue visitado
         }
