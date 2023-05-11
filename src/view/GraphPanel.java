@@ -15,8 +15,10 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -247,8 +249,9 @@ public class GraphPanel extends JPanel {
 
             g2d.setStroke(new BasicStroke(8));
 
-            nodoAnterior = nodosL.get(15);
+            nodoAnterior = nodosL.get(this.nodoDestino-1);
             
+            /*
             for (Integer indice : solucion) {
                 NodoLectura nodoActual = nodosL.get((int) indice);
 
@@ -257,6 +260,20 @@ public class GraphPanel extends JPanel {
                 
                 nodoAnterior = nodoActual;
             }
+            */
+            
+            nodoAnterior = nodosL.get(solucion.get(0));
+            
+            for (int i = 1; i < solucion.size(); i++) {
+                
+                NodoLectura nodoActual = nodosL.get(solucion.get(i));
+
+                g2d.drawLine(nodoAnterior.getX() + 12, nodoAnterior.getY() + 12,
+                        nodoActual.getX() + 12, nodoActual.getY() + 12);
+
+                nodoAnterior = nodoActual;
+            }
+            
         }
         
         g.drawImage(img, 0, 0, this);
@@ -264,6 +281,11 @@ public class GraphPanel extends JPanel {
     }
 
     void reset(String ruta) {
+        this.nodoInicial = -1;
+        this.nodoDestino = -1;
+        this.nodoActual = -1;
+        this.nodosIntermedios = new ArrayList();
+        this.nodosBloqueados = new ArrayList();
         this.mapaRoute = ruta;
         isShowingSolution = false;
         this.solucion = null;
@@ -293,6 +315,7 @@ public class GraphPanel extends JPanel {
         solucion = new ArrayList();
         int[] camino = vista.getModelo().getNodosPrevios();
         int destino = this.nodoDestino-1;
+        solucion.add(destino);
         int previo = camino[destino];
         solucion.add(previo);
         System.out.println(previo);
@@ -302,6 +325,8 @@ public class GraphPanel extends JPanel {
             System.out.println(previo);
         }
         solucion.remove(solucion.size()-1);
+        System.out.println(solucion);
+        Collections.reverse(solucion);
         isShowingSolution = true;
     }
 
