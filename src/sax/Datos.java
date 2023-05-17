@@ -1,14 +1,11 @@
 package sax;
 
 import sax.Arista;
-import main.Errores;
 import java.util.ArrayList;
 import model.Nodo;
 
 public class Datos {
 
-    private int w;
-    private int h;
     private ArrayList <NodoLectura> nodosL;
     private ArrayList<Nodo> grafo;
     private ArrayList <Arista> aristas;
@@ -16,8 +13,6 @@ public class Datos {
     private String tipo = "";
 
     public Datos() {
-        w = 600;
-        h = 600;
         grafo = new ArrayList<>();
         nodosL = new ArrayList<>();
         aristas = new ArrayList<>();
@@ -141,29 +136,9 @@ public class Datos {
     public int getNodoY(int i) {
         return getNodo(i).getY();
     }
-    
-    public int getNodoFX(int i, int j) {
-        NodoLectura n = nodosL.get(i);
-        n = n.getArista(j).apunta();
-        return n.getX();
-    }
-    
-    public int getNodoFY(int i, int j) {
-        NodoLectura n = nodosL.get(i);
-        n = n.getArista(j).apunta();
-        return n.getY();
-    }
-    
+        
     public String getNodoEt(int i) {
         return getNodo(i).getEtiqueta();
-    }
-    
-    public int getWidth() {
-        return w;
-    }
-    
-    public int getHeight() {
-        return h;
     }
     
     public int getNAristasDenodo(NodoLectura n) {

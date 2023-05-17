@@ -29,7 +29,7 @@ import javax.swing.border.LineBorder;
  */
 public class RightLateralPanel extends JPanel {
 
-    private View vista;
+    private final View vista;
     private int x, y, width, height;
     private JButton verGrafo;
     private JPanel panelSolucion;
@@ -81,7 +81,7 @@ public class RightLateralPanel extends JPanel {
         panelSolucion.setBorder(new LineBorder(Color.BLACK, 2));
 
         caminoSolucion = new JTextArea("SOLUCIÓN");
-        caminoSolucion.setFont(new Font("Arial", Font.BOLD, 16));
+        caminoSolucion.setFont(new Font("Arial", Font.BOLD, 13));
         caminoSolucion.setBounds(10, 10, panelSolucion.getWidth() - 20, panelSolucion.getHeight() - 20);
         caminoSolucion.setAlignmentX(CENTER);
         caminoSolucion.setAlignmentY(TOP);
@@ -91,9 +91,11 @@ public class RightLateralPanel extends JPanel {
         panelSolucion.add(caminoSolucion);
         this.add(panelSolucion);
         
+        this.timePanel = new TimePanel(10, (int) (height * 2 / 3) + 10 ,width - 20, 80);
+        this.add(timePanel);
+        
         opcionAlg = new JComboBox<>(new String[]{"Iterativo", "Recursivo"});
-        opcionAlg.setBounds(verGrafo.getX(), verGrafo.getY() - verGrafo.getHeight() / 2, verGrafo.getWidth(), verGrafo.getHeight() / 2);
-        opcionAlg.setLocation(panelSolucion.getX(), panelSolucion.getY() + panelSolucion.getHeight() + 10);
+        opcionAlg.setBounds(verGrafo.getX(), verGrafo.getY() - 50, verGrafo.getWidth(), 40);
         this.add(opcionAlg);
         
         this.setVisible(true);
@@ -120,6 +122,7 @@ public class RightLateralPanel extends JPanel {
 
         private TimePanel(int x, int y, int width, int height) {
             this.setBounds(x, y, width, height);
+            this.setBorder(new LineBorder(Color.BLACK, 2));
 
             this.timeLabel = new JLabel("");
             this.add(timeLabel);

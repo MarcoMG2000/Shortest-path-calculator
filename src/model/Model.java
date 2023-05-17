@@ -10,7 +10,6 @@ package model;
 import sax.NodoLectura;
 import sax.Datos;
 import view.View;
-import controller.Controller;
 import java.util.ArrayList;
 
 /**
@@ -21,19 +20,16 @@ public class Model {
 
     // PUNTEROS DEL PATRÓN MVC
     private View vista;
-    private Controller controlador1;
-    private Controller controlador2;
     
     private int totalNodos;
     private int totalAristas;
-    private Nodo nodoInicio;
+    
     private ArrayList<Nodo> grafo;
     private Datos datos;
     
-    private ArrayList<Integer> nodosBloqueados;
+    private Nodo nodoInicio;
 
-    private int[] nodosPrevios;
-    private int[] distMin;
+    private ArrayList<Integer> nodosBloqueados;
 
 
     // CONSTRUCTORS
@@ -41,11 +37,9 @@ public class Model {
         datos = new Datos();
     }
 
-    public Model(View vista, Controller controlador1, Controller controlador2, Datos datos) {
+    public Model(View vista, Datos datos) {
         this.grafo = datos.getGrafo();
         this.vista = vista;
-        this.controlador1 = controlador1;
-        this.controlador2 = controlador2;
     }
 
     // CLASS METHODS
@@ -56,22 +50,6 @@ public class Model {
 
     public void setVista(View vista) {
         this.vista = vista;
-    }
-
-    public Controller getControlador1() {
-        return controlador1;
-    }
-
-    public void setControlador1(Controller controlador1) {
-        this.controlador1 = controlador1;
-    }
-
-    public Controller getControlador2() {
-        return controlador2;
-    }
-
-    public void setControlador2(Controller controlador2) {
-        this.controlador2 = controlador2;
     }
     
     public int getTotalNodos() {
@@ -118,23 +96,6 @@ public class Model {
     public void actualizarNNodos() {
         grafo = datos.getGrafo();
         totalNodos = datos.getNNodos();
-    }
-    
-
-    public int[] getNodosPrevios() {
-        return nodosPrevios;
-    }
-
-    public void setNodosPrevios(int[] nodosPrevios) {
-        this.nodosPrevios = nodosPrevios;
-    }
-
-    public int[] getDistMin() {
-        return distMin;
-    }
-
-    public void setDistMin(int[] distMin) {
-        this.distMin = distMin;
     }
 
     public void setNodosBloqueados(ArrayList<Integer> nodosBloqueados) {

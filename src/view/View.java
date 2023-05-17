@@ -9,7 +9,6 @@ package view;
 
 import model.Model;
 import controller.Controller;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -197,10 +196,6 @@ public class View extends JFrame{
             c.setVista(this);
             c.setModelo(modelo);
             
-            System.out.println("Nuevo Controlador: ");
-            System.out.println("Inicial: " + nodoInicio);
-            System.out.println("Destino: " + nodoIntermedio);
-            
             c.setnInicio(nodoInicio);
             c.setnDestino(nodoIntermedio);
             
@@ -217,21 +212,21 @@ public class View extends JFrame{
 
         c.setnInicio(nodoInicio);
         c.setnDestino(graphPanel.getNodoDestino());
-
-        System.out.println("Nuevo Controlador: ");
-        System.out.println("Inicial: " + nodoInicio);
-        System.out.println("Destino: " + graphPanel.getNodoDestino());
         
         hilosController.add(new Thread(c));
         Controllers.add(c);
         
+        long tiempoI = System.nanoTime();
         for(Thread t : hilosController){
             t.start();
         }
         
         for(Thread t : hilosController){
             t.join();
-        }        
+        }
+        
+        tiempoI = System.nanoTime() - tiempoI;
+        rightPanel.setTime(tiempoI);        
         
         ArrayList<Integer> solucion = new ArrayList();
         ArrayList<Integer> Auxsolucion;
@@ -239,8 +234,8 @@ public class View extends JFrame{
         int iteracion = 1;
         for(Controller cActual : Controllers){
             Auxsolucion = new ArrayList();
-            System.out.println("Interacion " + iteracion++);
-            //if(!solucion.isEmpty()) solucion.remove(0);
+            
+            if(iteracion != 1) solucion.remove(solucion.size()-1);
             
             int[] camino = cActual.getNodosPrevios();
             int destino = cActual.getnDestino();
@@ -248,20 +243,20 @@ public class View extends JFrame{
             
             int previo = camino[destino];
             Auxsolucion.add(previo);
-            System.out.println(previo);
             
             while (previo != -1) {
                 previo = camino[previo];
                 Auxsolucion.add(previo);
-                System.out.println(previo);
             }
             
             
             Auxsolucion.remove(Auxsolucion.size()-1);
             Collections.reverse(Auxsolucion);
+            System.out.println("Iteracion " + iteracion + ": " + Auxsolucion);
             
             solucion.addAll(Auxsolucion);
-            System.out.println(solucion);
+            
+            iteracion++;
 
         }
         
@@ -285,14 +280,7 @@ public class View extends JFrame{
         System.out.println(solucion);
         Collections.reverse(solucion);
         **/
-        
-        
-        
-        
-        
-        
-        
-        
+                
         this.graphPanel.guardarCamino(solucion);
         this.graphPanel.repaint();
 

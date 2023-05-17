@@ -7,7 +7,6 @@
  */
 package controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -26,8 +25,10 @@ public class Controller implements Runnable {
     // PUNTEROS DEL PATRÓN MVC
     private Model modelo;
     private View vista;
+    
     private int[] nodosPrevios;
     private int[] distMin;
+    
     private int nInicio;
     private Nodo nDestino;
 
@@ -54,6 +55,26 @@ public class Controller implements Runnable {
     
     public int getnDestino(){
         return modelo.getGrafo().indexOf(this.nDestino);
+    }
+    
+        @Override
+    public void run() {
+        if(vista.getrightPanel().getOpcionAlg().getSelectedItem() == "Recursivo"){
+            dijkstraRec();
+        }else{
+            dijkstra();
+        }
+    }
+
+    public class Par {
+
+        int nodo;
+        int distancia;
+
+        public Par(int d, int n) {
+            this.distancia = d;
+            this.nodo = n;
+        }
     }
     
     
@@ -191,23 +212,4 @@ public class Controller implements Runnable {
         this.vista = vista;
     }
 
-    @Override
-    public void run() {
-        if(vista.getrightPanel().getOpcionAlg().getSelectedItem() == "Recursivo"){
-            dijkstraRec();
-        }else{
-            dijkstra();
-        }
-    }
-
-    public class Par {
-
-        int nodo;
-        int distancia;
-
-        public Par(int d, int n) {
-            this.nodo = n;
-            this.distancia = d;
-        }
-    }
 }

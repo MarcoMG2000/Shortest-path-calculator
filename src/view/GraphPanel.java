@@ -15,10 +15,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -342,7 +340,5 @@ public class GraphPanel extends JPanel {
     protected ArrayList<Integer> getNodosIntermedios(){
         return this.nodosIntermedios;
     }
-    
-    
     
 }

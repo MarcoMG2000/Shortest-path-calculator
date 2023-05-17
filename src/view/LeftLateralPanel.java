@@ -8,12 +8,8 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -26,9 +22,9 @@ import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.SwingConstants.TOP;
 import javax.swing.border.LineBorder;
 import model.Nodo;
+
 import static view.GraphPanel.BLOQUED_ICON;
 import static view.GraphPanel.END_ICON;
-import static view.GraphPanel.ICONS_ROUTE;
 import static view.GraphPanel.INT_ICON;
 import static view.GraphPanel.START_ICON;
 
@@ -37,16 +33,19 @@ import static view.GraphPanel.START_ICON;
  */
 public class LeftLateralPanel extends JPanel {
 
-    private View vista;
+    private final View vista;
     private JTextArea PuebloActual;
-    private int x, y;
-    private int width, height;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
     
     private JLabel iconoActual = new JLabel();
     
     /**
      * Panel Lateral izquierdo encargado de la configuración del algoritmo y los
      * datos de la aplicación
+     * @param v JFrame View
      */
     public LeftLateralPanel(View v) {
         this.vista = v;
@@ -181,7 +180,7 @@ public class LeftLateralPanel extends JPanel {
         for(Integer[] adj : nodoActual.getAdjacentes()){
             nodoVecino = grafo.get(adj[0] - 1);
             this.PuebloActual.append("\n  " + nodoVecino.getNombreNodo() + "\n  " + adj[1] +" km ↓");
-        };
+        }
     }
     
     protected void clearPuebloActual() {

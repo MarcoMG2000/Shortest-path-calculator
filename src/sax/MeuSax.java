@@ -5,7 +5,6 @@
  */
 package sax;
 
-import main.Errores;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import javax.xml.parsers.SAXParser;

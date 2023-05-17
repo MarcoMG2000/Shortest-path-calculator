@@ -17,7 +17,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class MeuHandler extends DefaultHandler {
 
-    private Model modelo;
+    private final Model modelo;
     private boolean enTipo;
     private boolean enGrafo;
     private boolean enNodo;
